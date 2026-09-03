@@ -1,6 +1,7 @@
 # Multi-stage Dockerfile para Pasilux
-# Estágio 1: Build da aplicação (Frontend Vite + Backend Express compilado)
-FROM node:20-alpine AS builder
+# Estágio 1: Build da aplicação (Vite + Backend) na plataforma nativa do host ($BUILDPLATFORM)
+# Isso evita lentidão de emulação QEMU e o erro de rollup/musl no ARM64
+FROM --platform=$BUILDPLATFORM node:20-alpine AS builder
 
 WORKDIR /app
 
