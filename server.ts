@@ -4,7 +4,6 @@ import fs from 'fs';
 import multer from 'multer';
 import initSqlJs, { Database } from 'sql.js';
 import dotenv from 'dotenv';
-import { createServer as createViteServer } from 'vite';
 import { PROFILES as DEFAULT_PROFILES } from './src/data';
 import { sendLeadEmail, sendBudgetEmail, sendTestEmail, getEmailConfigStatus } from './server/email';
 
@@ -869,6 +868,7 @@ async function startServer() {
 
   // Vite middleware for development / Static files for production
   if (process.env.NODE_ENV !== 'production') {
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',

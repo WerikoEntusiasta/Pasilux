@@ -4,13 +4,13 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copia arquivos de dependência
+# Copia arquivos de definição de dependência
 COPY package*.json ./
 
-# Instala todas as dependências (incluindo devDependencies necessárias para o build)
-RUN npm ci
+# Instala todas as dependências necessárias para o build
+RUN npm install --no-audit --no-fund
 
-# Copia o código-fonte da aplicação
+# Copia todo o código-fonte da aplicação
 COPY . .
 
 # Executa o build de produção (gera a pasta dist/ com o frontend e dist/server.cjs)
@@ -25,11 +25,13 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Instala apenas dependências de produção
+# Copia arquivos de dependência
 COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
 
-# Copia os artefatos compilados do estágio anterior
+# Instala apenas as dependências de produção de forma resiliente (suporta presença ou ausência de package-lock.json)
+RUN npm install --omit=dev --no-audit --no-fund && npm cache clean --force
+
+# Copia os artefatos compilados do estágio de build
 COPY --from=builder /app/dist ./dist
 
 # Garante que as pastas persistentes de dados e uploads existam
