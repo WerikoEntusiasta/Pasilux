@@ -389,6 +389,11 @@ async function startServer() {
   // Serve file uploads directory
   app.use('/uploads', express.static(UPLOADS_DIR));
 
+  // Health check endpoint for Easypanel / Docker / Uptime monitors
+  app.get('/api/health', (req, res) => {
+    res.json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() });
+  });
+
   // File Upload Endpoint
   app.post('/api/upload', upload.single('file'), (req, res) => {
     if (!req.file) {
