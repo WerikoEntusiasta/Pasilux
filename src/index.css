@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-serif: "Georgia", ui-serif, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-gold: #eab308;
+  --color-gold-light: #fef08a;
+  --color-gold-dark: #854d0e;
+
+  --color-led-warm: #ffeb99;
+  --color-led-neutral: #ffffff;
+  --color-led-cool: #e0f2fe;
+}
+
+@layer utilities {
+  .glow-warm {
+    box-shadow: 0 0 25px 8px rgba(250, 224, 19, 0.45), 0 0 50px 20px rgba(250, 224, 19, 0.2);
+  }
+  .glow-neutral {
+    box-shadow: 0 0 25px 8px rgba(255, 255, 255, 0.5), 0 0 50px 20px rgba(255, 255, 255, 0.2);
+  }
+  .glow-cool {
+    box-shadow: 0 0 25px 8px rgba(224, 242, 254, 0.5), 0 0 50px 20px rgba(14, 165, 233, 0.25);
+  }
+  
+  .text-glow-warm {
+    text-shadow: 0 0 12px rgba(250, 224, 19, 0.7);
+  }
+  .text-glow-neutral {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+  }
+  .text-glow-cool {
+    text-shadow: 0 0 12px rgba(14, 165, 233, 0.7);
+  }
+
+  /* Self-drawing line effect (Effect 8) */
+  @keyframes drawLine {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .animate-draw {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: drawLine 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Custom smooth transitions */
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Premium Night Mode Styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark, .dark body {
+  background-color: #0f1013 !important;
+  color: #f3f4f6 !important;
+  border-color: #262933 !important;
+}
+
+.dark #navbar {
+  background-color: rgba(15, 16, 19, 0.85) !important;
+  border-bottom-color: rgba(38, 41, 51, 0.8) !important;
+}
+
+.dark .bg-white {
+  background-color: #15161c !important;
+}
+
+.dark .bg-neutral-50 {
+  background-color: #1a1b22 !important;
+}
+
+.dark .bg-neutral-100 {
+  background-color: #242631 !important;
+}
+
+.dark .border-neutral-200, 
+.dark .border-neutral-200\/80,
+.dark .border-neutral-100 {
+  border-color: #262933 !important;
+}
+
+.dark .text-neutral-950,
+.dark .text-neutral-900,
+.dark .text-neutral-800 {
+  color: #f1f3f9 !important;
+}
+
+.dark .text-neutral-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-neutral-600 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-neutral-500 {
+  color: #64748b !important;
+}
+
+.dark .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .bg-neutral-50\/60 {
+  background-color: rgba(26, 27, 34, 0.6) !important;
+}
+
+.dark .bg-neutral-50\/50 {
+  background-color: rgba(26, 27, 34, 0.5) !important;
+}
+
+.dark .bg-neutral-50\/80 {
+  background-color: rgba(26, 27, 34, 0.8) !important;
+}
+
+.dark #blueprint-simulator {
+  border-color: #383c4a !important;
+  background-color: #0d0e12 !important;
+}
+
+.dark input, 
+.dark select, 
+.dark textarea {
+  background-color: #16171d !important;
+  color: #f3f4f6 !important;
+  border-color: #262933 !important;
+}
+
+.dark .blog-article-card {
+  background-color: #15161c !important;
+  border-color: #262933 !important;
+}
+
+/* Custom grid background that becomes very faint/subtle in dark mode */
+.hero-grid-bg {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+}
+
+.dark .hero-grid-bg {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px) !important;
+}
+

@@ -1,0 +1,68 @@
+name: pasilux
+services:
+  pasilux:
+    image: werikoliveira/pasilux:latest
+    container_name: pasilux-app
+    restart: unless-stopped
+    network_mode: bridge
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: /DATA/AppData/pasilux/data
+        target: /app/data
+      - type: bind
+        source: /DATA/AppData/pasilux/uploads
+        target: /app/uploads
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    x-casaos:
+      envs:
+        - container: NODE_ENV
+          description:
+            en_us: Production environment
+            pt_br: Modo de execução da aplicação (produção)
+        - container: PORT
+          description:
+            en_us: Internal listening port
+            pt_br: Porta interna do servidor
+      ports:
+        - container: "3000"
+          description:
+            en_us: Pasilux Web UI Port (Default: 3000)
+            pt_br: Porta de acesso à interface Web (Padrão: 3000)
+      volumes:
+        - container: /app/data
+          description:
+            en_us: Persistent storage for SQLite Database (pasilux.db)
+            pt_br: Armazenamento persistente do banco de dados SQLite
+        - container: /app/uploads
+          description:
+            en_us: Persistent storage for project attachments and technical drawings
+            pt_br: Armazenamento persistente para anexos e projetos enviados
+
+x-casaos:
+  architectures:
+    - amd64
+    - arm64
+  main: pasilux
+  author: Pasilux / Werik Oliveira
+  category: Productivity
+  description:
+    en_us: Pasilux - Industrial aluminum LED profiles technical catalog, custom project quotation calculator and lighting commercial management system.
+    pt_br: Pasilux - Catálogo técnico de perfis de LED industriais em alumínio, simulador de orçamentos e sistema de gestão comercial luminotécnica.
+  developer: Pasilux Alumínios
+  icon: https://raw.githubusercontent.com/werikoliveira/pasilux/main/public/favicon.svg
+  thumbnail: https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=640&auto=format&fit=crop
+  screenshot_link:
+    - https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1280&auto=format&fit=crop
+  tagline:
+    en_us: Industrial Aluminum LED Profiles & Architectural Lighting
+    pt_br: Perfis de LED em Alumínio Industrial & Iluminação Arquitetônica
+  title:
+    en_us: Pasilux
+    pt_br: Pasilux
+  scheme: http
+  index: /
+  port_map: "3000"

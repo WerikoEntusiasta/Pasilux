@@ -1,0 +1,6 @@
+{
+  "name": "Pasilux",
+  "description": "Fábrica de perfis de LED de alta precisão em alumínio. Tradição, qualidade e inovação.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
