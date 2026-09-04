@@ -398,9 +398,15 @@ async function startServer() {
   // SEO, LLMS & AI AGENT DISCOVERY ENDPOINTS
   // ==========================================
   
+  const resolveStaticFile = (filename: string): string => {
+    const distPath = path.join(process.cwd(), 'dist', filename);
+    if (fs.existsSync(distPath)) return distPath;
+    return path.join(process.cwd(), 'public', filename);
+  };
+
   // robots.txt
   app.get('/robots.txt', (req, res) => {
-    const robotsPath = path.join(process.cwd(), 'public', 'robots.txt');
+    const robotsPath = resolveStaticFile('robots.txt');
     if (fs.existsSync(robotsPath)) {
       res.type('text/plain; charset=utf-8').sendFile(robotsPath);
     } else {
@@ -461,7 +467,7 @@ async function startServer() {
       xml += `</urlset>`;
       res.type('application/xml; charset=utf-8').send(xml);
     } catch (err: any) {
-      const staticPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+      const staticPath = resolveStaticFile('sitemap.xml');
       if (fs.existsSync(staticPath)) {
         res.type('application/xml; charset=utf-8').sendFile(staticPath);
       } else {
@@ -472,23 +478,23 @@ async function startServer() {
 
   // llms.txt & llms-full.txt (LLM & AI Assistant documentation)
   app.get('/llms.txt', (req, res) => {
-    const filePath = path.join(process.cwd(), 'public', 'llms.txt');
+    const filePath = resolveStaticFile('llms.txt');
     res.type('text/plain; charset=utf-8').sendFile(filePath);
   });
 
   app.get('/llms-full.txt', (req, res) => {
-    const filePath = path.join(process.cwd(), 'public', 'llms-full.txt');
+    const filePath = resolveStaticFile('llms-full.txt');
     res.type('text/plain; charset=utf-8').sendFile(filePath);
   });
 
   // agent.txt & ai.txt (AI Autonomous Crawler discovery)
   app.get('/agent.txt', (req, res) => {
-    const filePath = path.join(process.cwd(), 'public', 'agent.txt');
+    const filePath = resolveStaticFile('agent.txt');
     res.type('text/plain; charset=utf-8').sendFile(filePath);
   });
 
   app.get('/ai.txt', (req, res) => {
-    const filePath = path.join(process.cwd(), 'public', 'agent.txt');
+    const filePath = resolveStaticFile('agent.txt');
     res.type('text/plain; charset=utf-8').sendFile(filePath);
   });
 

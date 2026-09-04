@@ -34,6 +34,7 @@ RUN npm install --omit=dev --no-audit --no-fund && npm cache clean --force
 
 # Copia os artefatos compilados do estágio de build
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/public ./public
 
 # Garante que as pastas persistentes de dados e uploads existam
 RUN mkdir -p data uploads
