@@ -74,7 +74,7 @@ export default function Footer({ onNavigateToProducts, onNavigateHome }: FooterP
               </span>
             </div>
             <p className="text-xs text-neutral-400 leading-relaxed font-light max-w-sm">
-              Tradição metalúrgica de mais de 60 anos unida à inovação da extrusão de perfis de alumínio. Elevando o padrão de projetos luminotécnicos residenciais e corporativos.
+              {siteTexts.footerSlogan || 'Tradição metalúrgica de mais de 60 anos unida à inovação da extrusão de perfis de alumínio. Elevando o padrão de projetos luminotécnicos residenciais e corporativos.'}
             </p>
           </div>
 
@@ -82,14 +82,21 @@ export default function Footer({ onNavigateToProducts, onNavigateHome }: FooterP
           <div className="md:col-span-3 space-y-3">
             <h5 className="font-serif font-semibold text-white text-xs uppercase tracking-wider">Acesso Rápido</h5>
             <div className="grid grid-cols-1 gap-2 text-xs">
-              {['home', 'quemsomos', 'produtos', 'projetos', 'blog', 'contato'].map((sect) => (
+              {[
+                { id: 'home', label: siteTexts.navLinkHome || 'Início' },
+                { id: 'quemsomos', label: siteTexts.navLinkAbout || 'Quem Somos' },
+                { id: 'produtos', label: siteTexts.navLinkProducts || 'Produtos' },
+                { id: 'projetos', label: siteTexts.navLinkProjects || 'Projetos' },
+                { id: 'blog', label: siteTexts.navLinkBlog || 'Blog' },
+                { id: 'contato', label: siteTexts.navLinkContact || 'Contato' },
+              ].map((item) => (
                 <button
-                  key={sect}
-                  onClick={() => handleNavClick(sect)}
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
                   className="text-left text-neutral-400 hover:text-gold transition-colors capitalize cursor-pointer focus:outline-none"
-                  id={`footer-nav-${sect}`}
+                  id={`footer-nav-${item.id}`}
                 >
-                  {sect === 'quemsomos' ? 'Quem Somos' : sect}
+                  {item.label}
                 </button>
               ))}
             </div>
@@ -100,7 +107,7 @@ export default function Footer({ onNavigateToProducts, onNavigateHome }: FooterP
             <h5 className="font-serif font-semibold text-white text-xs uppercase tracking-wider">Matriz & Atendimento Oficial</h5>
             <p className="text-xs text-neutral-300 leading-relaxed font-light flex items-start gap-2">
               <MapPin className="h-4 w-4 text-gold shrink-0 mt-0.5" />
-              <span>{displayAddress} — Polo Metalúrgico de Alumínio</span>
+              <span>{siteTexts.footerLocationNotice || `${displayAddress} — Polo Metalúrgico de Alumínio`}</span>
             </p>
             <div className="space-y-1.5 pt-1">
               <a
@@ -128,7 +135,7 @@ export default function Footer({ onNavigateToProducts, onNavigateHome }: FooterP
         {/* Bottom copyright disclaimer requested */}
         <div className="pt-8 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-[11px] font-mono tracking-wide text-neutral-500 text-center sm:text-left">
-            Copyright © 2026 Pasilux – Todos os direitos reservados.
+            {siteTexts.footerCopyright || 'Copyright © 2026 Pasilux – Todos os direitos reservados.'}
           </span>
 
           <button
@@ -136,7 +143,7 @@ export default function Footer({ onNavigateToProducts, onNavigateHome }: FooterP
             className="group px-4 py-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white rounded border border-neutral-800 text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
             id="footer-back-to-top"
           >
-            Voltar ao topo
+            {siteTexts.footerBackToTop || 'Voltar ao topo'}
             <ArrowUp className="h-3.5 w-3.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>

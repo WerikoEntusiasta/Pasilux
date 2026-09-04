@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FileText, Download, X, CheckCircle2, Loader2, Sparkles, ShieldCheck, Mail, User, Phone, Building2 } from 'lucide-react';
+import { Download, X, CheckCircle2, Loader2, Sparkles, ShieldCheck, Mail, User, Phone, Building2, Printer } from 'lucide-react';
 import { useData } from '../context/DataContext';
 
 interface CatalogPdfModalProps {
@@ -9,7 +9,7 @@ interface CatalogPdfModalProps {
 }
 
 export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProps) {
-  const { addLead } = useData();
+  const { addLead, profiles, siteTexts } = useData();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -18,6 +18,85 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
   const [downloaded, setDownloaded] = useState(false);
 
   if (!isOpen) return null;
+
+  const generatePrintableCatalog = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+
+    const rowsHtml = profiles.map((p, idx) => `
+      <tr style="border-bottom: 1px solid #e5e5e5; font-size: 11px;">
+        <td style="padding: 6px 8px; font-family: monospace; font-weight: bold; color: #171717;">${p.code}</td>
+        <td style="padding: 6px 8px; font-weight: 600;">${p.name}</td>
+        <td style="padding: 6px 8px; color: #525252;">${p.category || p.type}</td>
+        <td style="padding: 6px 8px; text-align: center; font-family: monospace;">${p.width} x ${p.height} mm</td>
+        <td style="padding: 6px 8px; color: #525252;">${p.cutoutSize || 'Sobrepor / Sem rasgo'}</td>
+        <td style="padding: 6px 8px; text-align: center; font-family: monospace;">${p.maxStripWidth || '12mm'}</td>
+        <td style="padding: 6px 8px; font-size: 10px; color: #525252;">${(p.colors || []).join(', ')}</td>
+      </tr>
+    `).join('');
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="utf-8">
+        <title>Catálogo Técnico de Perfis de LED — Pasilux</title>
+        <style>
+          body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 24px; color: #171717; }
+          .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #d4af37; padding-bottom: 12px; margin-bottom: 20px; }
+          .logo { font-size: 24px; font-weight: 900; letter-spacing: 2px; }
+          .logo span { color: #b8860b; font-weight: 300; }
+          .meta { text-align: right; font-size: 11px; color: #737373; font-family: monospace; }
+          table { width: 100%; border-collapse: collapse; text-align: left; }
+          th { background: #171717; color: #f5f5f5; padding: 8px; font-size: 10px; font-family: monospace; text-transform: uppercase; letter-spacing: 0.5px; }
+          .footer { margin-top: 24px; padding-top: 12px; border-top: 1px solid #e5e5e5; font-size: 10px; color: #737373; display: flex; justify-content: space-between; }
+          @media print {
+            body { margin: 10mm; }
+            button { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <div>
+            <div class="logo">PASI<span>LUX</span></div>
+            <div style="font-size: 12px; font-weight: bold; color: #525252; margin-top: 2px;">Catálogo Técnico de Perfis de Alumínio & LED — Linha Industrial</div>
+            <div style="font-size: 11px; color: #737373;">Fábrica & Matriz Tecnológica: Catanduva - SP • (17) 99106-6398</div>
+          </div>
+          <div class="meta">
+            <div>Solicitante: ${name || 'Cliente'} (${company || 'Revenda'})</div>
+            <div>Data de Emissão: ${new Date().toLocaleDateString('pt-BR')}</div>
+            <button onclick="window.print()" style="margin-top: 6px; padding: 4px 10px; background: #b8860b; color: #000; border: none; font-weight: bold; border-radius: 4px; cursor: pointer;">Imprimir / Salvar PDF</button>
+          </div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Modelo</th>
+              <th>Categoria</th>
+              <th style="text-align: center;">Dimensão</th>
+              <th>Recorte / Rasgo</th>
+              <th style="text-align: center;">Fita Máx.</th>
+              <th>Acabamentos</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+          </tbody>
+        </table>
+
+        <div class="footer">
+          <div>Pasilux Perfis de Alumínio — Produção Própria em Catanduva/SP — Atendimento a Lojas e Revendas em todo o Brasil</div>
+          <div>www.pasilux.com.br</div>
+        </div>
+      </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+  };
 
   const handleDownload = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,28 +108,14 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
       email,
       phone: phone || '',
       subject: 'Download do Catálogo Técnico PDF Pasilux',
-      message: `Lead realizou o download do Catálogo Técnico Pasilux 2026. Empresa: ${company || 'Não informada'}. Telefone: ${phone || 'Não informado'}.`,
+      message: `Lead realizou o download do Catálogo Técnico Pasilux. Empresa: ${company || 'Não informada'}. Telefone: ${phone || 'Não informado'}.`,
     });
 
     setTimeout(() => {
       setLoading(false);
       setDownloaded(true);
-
-      // Trigger automatic simulated / real file download or open
-      const link = document.createElement('a');
-      link.href = '#';
-      link.setAttribute('download', 'Catalogo_Tecnico_Pasilux_2026.pdf');
-      // Create a friendly simulated PDF blob if needed or direct print
-      const blob = new Blob([
-        `%PDF-1.4\n1 0 obj\n<< /Title (Catalogo Tecnico Pasilux 2026) /Author (Pasilux) >>\nendobj\n`
-      ], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      link.href = url;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    }, 1000);
+      generatePrintableCatalog();
+    }, 800);
   };
 
   return (
@@ -80,7 +145,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
 
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-gold text-[10px] font-mono font-bold uppercase tracking-wider mb-3">
               <Sparkles className="h-3 w-3" />
-              <span>Edição Oficial 2026</span>
+              <span>Edição Oficial Atualizada</span>
             </div>
 
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -148,7 +213,7 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
 
                   <div>
                     <label className="text-[11px] font-mono text-neutral-600 uppercase font-semibold mb-1 block">
-                      Empresa / Escritório
+                      Empresa / Loja
                     </label>
                     <div className="relative">
                       <Building2 className="h-4 w-4 text-neutral-400 absolute left-3.5 top-3" />
@@ -171,12 +236,12 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                   {loading ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin text-gold" />
-                      <span>Gerando Download...</span>
+                      <span>Gerando Download do Catálogo...</span>
                     </>
                   ) : (
                     <>
                       <Download className="h-4 w-4 text-gold" />
-                      <span>Baixar Catálogo Técnico em PDF (Grátis)</span>
+                      <span>Baixar Catálogo Técnico em PDF</span>
                     </>
                   )}
                 </button>
@@ -192,18 +257,26 @@ export default function CatalogPdfModal({ isOpen, onClose }: CatalogPdfModalProp
                   <CheckCircle2 className="h-8 w-8" />
                 </div>
                 <h4 className="font-serif font-bold text-xl text-neutral-950">
-                  Download Iniciado com Sucesso!
+                  Catálogo Técnico Gerado com Sucesso!
                 </h4>
                 <p className="text-xs text-neutral-600 max-w-sm mx-auto leading-relaxed">
-                  O arquivo PDF com todo o catálogo técnico Pasilux foi baixado no seu dispositivo. Caso deseje suporte para especificar modelos no seu projeto, fale conosco pelo WhatsApp.
+                  A página com todas as 34 fichas técnicas dos perfis Pasilux foi aberta para visualização e impressão em PDF.
                 </p>
                 <div className="pt-3 flex items-center justify-center gap-3">
                   <button
                     type="button"
-                    onClick={onClose}
-                    className="px-6 py-2.5 bg-neutral-950 hover:bg-neutral-800 text-gold font-bold rounded-xl text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                    onClick={generatePrintableCatalog}
+                    className="px-5 py-2.5 bg-gold hover:bg-gold-light text-neutral-950 font-bold rounded-xl text-xs uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5"
                   >
-                    Fechar
+                    <Printer className="h-3.5 w-3.5" />
+                    <span>Reabrir / Imprimir</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="px-5 py-2.5 bg-neutral-950 hover:bg-neutral-800 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                  >
+                    Concluir
                   </button>
                 </div>
               </div>

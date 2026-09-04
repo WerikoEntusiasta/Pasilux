@@ -3,12 +3,14 @@ import { ARTICLES } from '../data';
 import { BlogArticle } from '../types';
 import { BookOpen, Calendar, Clock, ArrowRight, X, Sparkles, ChevronLeft, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useData } from '../context/DataContext';
 
 interface BlogSectionProps {
   onNavigateToBlogPage?: (slug?: string) => void;
 }
 
 export default function BlogSection({ onNavigateToBlogPage }: BlogSectionProps) {
+  const { siteTexts } = useData();
   const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
 
   const handleOpenArticle = (article: BlogArticle) => {
@@ -40,12 +42,12 @@ export default function BlogSection({ onNavigateToBlogPage }: BlogSectionProps) 
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="font-mono text-xs text-gold-dark uppercase tracking-widest font-bold">Informativos &amp; Insights</span>
+          <span className="font-mono text-xs text-gold-dark uppercase tracking-widest font-bold">{siteTexts.blogBadge || 'Informativos & Insights'}</span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-neutral-950 tracking-tight mt-2 mb-4">
-            Blog Pasilux
+            {siteTexts.blogTitle || 'Blog Pasilux'}
           </h2>
           <p className="font-sans text-neutral-700 text-base md:text-lg font-light leading-relaxed">
-            Fique por dentro das novidades tecnológicas, guias de economia de consumo e soluções sustentáveis ligadas à iluminação de LED.
+            {siteTexts.blogSubtitle || 'Fique por dentro das novidades tecnológicas, guias de economia de consumo e soluções sustentáveis ligadas à iluminação de LED.'}
           </p>
           <div className="h-0.5 w-20 bg-gold mx-auto mt-6" />
         </div>
@@ -110,7 +112,7 @@ export default function BlogSection({ onNavigateToBlogPage }: BlogSectionProps) 
               onClick={() => onNavigateToBlogPage()}
               className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-neutral-300 hover:border-gold text-neutral-900 font-mono text-xs uppercase font-bold rounded-xl transition-all shadow-xs hover:shadow-md cursor-pointer"
             >
-              <span>Ver Todos os Artigos do Blog</span>
+              <span>{siteTexts.blogCtaViewAll || 'Ver Todos os Artigos Técnicos'}</span>
               <ArrowRight className="h-4 w-4 text-gold-dark" />
             </button>
           </div>

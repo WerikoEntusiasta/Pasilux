@@ -17,7 +17,7 @@ interface ProductsSectionProps {
 }
 
 export default function ProductsSection({ onNavigateToProducts }: ProductsSectionProps) {
-  const { profiles } = useData();
+  const { profiles, siteTexts } = useData();
 
   // Select the 6 main featured products
   const featuredCodes = ['PSL0018', 'PSL0020', 'PSL0022', 'PSL0002', 'PSL0011', 'PSL0032'];
@@ -49,13 +49,13 @@ export default function ProductsSection({ onNavigateToProducts }: ProductsSectio
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono font-bold uppercase tracking-wider mb-3">
               <Sparkles className="h-3.5 w-3.5 text-gold" />
-              <span>Destaques de Extrusão Pasilux 2026</span>
+              <span>{siteTexts.productsBadge || 'Destaques Pasilux'}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
-              6 Principais Perfis de LED
+              {siteTexts.productsTitle || '6 Principais Perfis de LED'}
             </h2>
             <p className="text-neutral-400 text-sm mt-2 leading-relaxed">
-              Conheça os modelos industriais mais especificados por arquitetos, marceneiros e lighting designers em todo o Brasil.
+              {siteTexts.productsSubtitle || 'Conheça os modelos industriais mais especificados por arquitetos, marceneiros e lighting designers em todo o Brasil.'}
             </p>
           </div>
 
@@ -64,7 +64,7 @@ export default function ProductsSection({ onNavigateToProducts }: ProductsSectio
             onClick={() => handleProductClick()}
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gold hover:bg-gold-light text-neutral-950 font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer shadow-lg shadow-gold/20 hover:scale-[1.02] shrink-0"
           >
-            <span>Ver Catálogo Completo (34+ Modelos)</span>
+            <span>{siteTexts.productsCtaCatalog || 'Ver Catálogo Completo (34+ Modelos)'}</span>
             <ChevronRight className="h-4 w-4 text-neutral-950" />
           </button>
         </div>
@@ -121,10 +121,6 @@ export default function ProductsSection({ onNavigateToProducts }: ProductsSectio
                   <div className="flex items-center justify-between">
                     <span className="text-neutral-500">Largura Fita LED:</span>
                     <span className="font-bold text-neutral-900">{p.maxStripWidth}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-neutral-500">Tipo de Difusor:</span>
-                    <span className="font-bold text-neutral-900">{p.diffuser.split(' ')[0]} Anti-UV</span>
                   </div>
                 </div>
 

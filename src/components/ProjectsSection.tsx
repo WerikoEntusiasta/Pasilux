@@ -22,8 +22,12 @@ interface ProjectSpecs {
   specifications: string;
 }
 
-export default function ProjectsSection() {
-  const { addBudget, uploadFile } = useData();
+interface ProjectsSectionProps {
+  prefilledProfile?: string;
+}
+
+export default function ProjectsSection({ prefilledProfile }: ProjectsSectionProps) {
+  const { addBudget, uploadFile, siteTexts } = useData();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -60,8 +64,17 @@ export default function ProjectsSection() {
     company: '',
     city: '',
     state: '',
-    specifications: '',
+    specifications: prefilledProfile ? `Perfil Selecionado: ${prefilledProfile}\nFavor enviar cotação com valor e prazo de entrega.` : '',
   }));
+
+  React.useEffect(() => {
+    if (prefilledProfile) {
+      setFormData(prev => ({
+        ...prev,
+        specifications: `Perfil Selecionado: ${prefilledProfile}\nFavor enviar cotação com valor e prazo de entrega.`
+      }));
+    }
+  }, [prefilledProfile]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -114,12 +127,12 @@ export default function ProjectsSection() {
         
         {/* Simple Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <span className="text-xs font-mono text-gold-dark uppercase font-bold tracking-wider">Cotação Direta de Fábrica</span>
+          <span className="text-xs font-mono text-gold-dark uppercase font-bold tracking-wider">{siteTexts.budgetBadge || 'Cotação Direta de Fábrica'}</span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-neutral-950 tracking-tight mt-1 mb-3">
-            Solicite um Orçamento Sob Medida
+            {siteTexts.budgetTitle || 'Solicite um Orçamento Sob Medida'}
           </h2>
           <p className="text-neutral-600 text-sm leading-relaxed">
-            Envie as necessidades do seu projeto, medidas lineares ou anexe sua planta luminotécnica para receber uma cotação detalhada direto da fábrica Pasilux.
+            {siteTexts.budgetSubtitle || 'Envie as necessidades do seu projeto, medidas lineares ou anexe sua planta luminotécnica para receber uma cotação detalhada direto da fábrica Pasilux.'}
           </p>
         </div>
 
@@ -293,7 +306,7 @@ export default function ProjectsSection() {
                       </>
                     ) : (
                       <>
-                        <span>Solicitar Orçamento</span>
+                        <span>{siteTexts.budgetSubmitButton || 'Solicitar Orçamento'}</span>
                         <Send className="h-4 w-4" />
                       </>
                     )}

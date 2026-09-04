@@ -23,7 +23,7 @@ export default function ContactSection() {
   const displayPhone = siteTexts.contactPhone || '(17) 99106-6398';
   const displayEmail = siteTexts.contactEmail || 'contato@pasilux.com.br';
   const displayAddress = siteTexts.contactAddress || 'Catanduva, São Paulo, Brasil';
-  const displayHours = siteTexts.contactHours || 'Segunda a Sexta: 08:00 às 18:00';
+  const displayHours = siteTexts.contactHours || 'Segunda a Sexta: 07:30 às 17:30';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -90,12 +90,12 @@ export default function ContactSection() {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="font-mono text-xs text-gold-dark uppercase tracking-widest font-bold">Atendimento Pasilux</span>
+          <span className="font-mono text-xs text-gold-dark uppercase tracking-widest font-bold">{siteTexts.contactBadge || 'Atendimento Pasilux'}</span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-neutral-950 tracking-tight mt-2 mb-6">
-            Fale com Nossos Consultores
+            {siteTexts.contactTitle || 'Fale com Nossos Consultores'}
           </h2>
           <p className="font-sans text-neutral-700 text-base md:text-lg font-normal leading-relaxed">
-            Estamos prontos para atender você! Fale diretamente com nossa equipe técnica pelo WhatsApp oficial, telefone ou envie sua mensagem abaixo.
+            {siteTexts.contactDescription || 'Estamos prontos para atender você! Fale diretamente com nossa equipe técnica pelo WhatsApp oficial, telefone ou envie sua mensagem abaixo.'}
           </p>
           <div className="h-0.5 w-20 bg-gold mx-auto mt-6" />
         </div>
@@ -106,7 +106,7 @@ export default function ContactSection() {
           {/* Contact details */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <h3 className="font-serif font-bold text-neutral-950 text-2xl tracking-tight">Canais Oficiais de Contato</h3>
+              <h3 className="font-serif font-bold text-neutral-950 text-2xl tracking-tight">{siteTexts.contactFormTitle || 'Canais Oficiais de Contato'}</h3>
               <p className="text-sm text-neutral-600 font-normal leading-relaxed">
                 {siteTexts.contactSubtitle}
               </p>
@@ -333,7 +333,7 @@ export default function ContactSection() {
                       </>
                     ) : (
                       <>
-                        Enviar Mensagem
+                        {siteTexts.contactButtonText || 'Enviar Mensagem'}
                         <Send className="h-4 w-4" />
                       </>
                     )}
@@ -347,9 +347,9 @@ export default function ContactSection() {
                   id="contact-success-screen"
                 >
                   <CheckCircle2 className="h-14 w-14 text-gold-dark mx-auto" />
-                  <h3 className="font-serif font-bold text-neutral-950 text-xl">Mensagem Recebida com Sucesso!</h3>
+                  <h3 className="font-serif font-bold text-neutral-950 text-xl">{siteTexts.contactSuccessTitle || 'Mensagem Recebida com Sucesso!'}</h3>
                   <p className="font-sans text-neutral-700 text-sm max-w-md mx-auto leading-relaxed">
-                    Agradecemos seu contato. Sua mensagem foi recebida no painel administrativo Pasilux e nossa equipe retornará em até <strong className="text-neutral-950 font-bold">24 horas úteis</strong> via WhatsApp ou E-mail.
+                    {siteTexts.contactSuccessMessage || 'Agradecemos seu contato. Sua mensagem foi recebida no painel administrativo Pasilux e nossa equipe retornará em até 24 horas úteis via WhatsApp ou E-mail.'}
                   </p>
                   <button
                     type="button"

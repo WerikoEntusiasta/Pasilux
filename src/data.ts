@@ -628,58 +628,164 @@ export const PROFILES: LEDProfile[] = [
 
 export const ARTICLES: BlogArticle[] = [
   {
-    id: 'artigo-revolucao-led',
-    slug: 'iluminacao-led-revolucao-luminosa',
-    title: 'A Iluminação em LED: Uma Revolução Luminosa para o Futuro',
+    id: 'artigo-reducao-consumo-led',
+    slug: 'quanto-a-iluminacao-em-led-reduz-no-consumo-de-energia',
+    title: 'Quanto a iluminação em LED reduz no consumo de energia frente à lâmpada tradicional',
     date: '15 Mai 2026',
-    category: 'Sustentabilidade & Tecnologia',
+    category: 'Eficiência Energética',
     readTime: '6 min',
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'A iluminação desempenha um papel fundamental em nossas vidas diárias. Não apenas torna os ambientes mais agradáveis e acolhedores, mas também desempenha um papel crucial na eficiência energética e na redução dos impactos ambientais.',
-    content: `A iluminação desempenha um papel fundamental em nossas vidas diárias. Não apenas torna os ambientes mais agradáveis e acolhedores, mas também desempenha um papel crucial na eficiência energética e na redução dos impactos ambientais. À medida que a tecnologia evolui, uma das maiores revoluções na indústria da iluminação é a adoção em larga escala da iluminação em LED (Light Emitting Diode). Neste artigo, exploraremos a importância da iluminação em LED e como ela está moldando o futuro da iluminação.
+    excerpt: 'Comparativo detalhado de consumo em kWh, dissipação térmica do perfil de alumínio e redução de custos elétricos na transição da iluminação incandescente e fluorescente para LED linear.',
+    content: `A substituição de sistemas convencionais por perfis lineares de LED representa uma das decisões mais eficientes em termos de economia operacional e qualidade luminotécnica.
 
-### 1. Eficiência Energética Superior
-Os perfis de alumínio com dissipação técnica otimizada permitem que as fitas de LED operem em temperaturas seguras, prolongando sua vida útil para além de 50.000 horas e reduzindo o consumo elétrico em até 80% comparado a sistemas tradicionais halógenos ou fluorescentes.
+### 1. Eficiência Energética Superior (Até 80% de Redução)
+Os perfis de alumínio Pasilux com dissipação técnica otimizada permitem que as fitas de LED operem em temperaturas térmicas seguras (inferiores a 50°C), prolongando sua vida útil para além de 50.000 horas e reduzindo o consumo elétrico em até 80% comparado a sistemas tradicionais halógenos ou lâmpadas fluorescentes tubulares.
 
-### 2. Integração Arquitetônica Total (No Frame & Embutir)
-Com as linhas No Frame e de embutir ultra-slim, a luz passa a fazer parte da estrutura do imóvel. Não existem mais luminárias pesadas poluindo o campo visual: a arquitetura é realçada por rasgos e linhas contínuas de luz homogênea e sem pontos aparentes (No-Dot).
+### 2. Dissipação Térmica do Alumínio
+Uma das principais causas da queima prematura de fitas de LED instaladas diretamente em madeira ou gesso é o superaquecimento. O perfil de alumínio atua como um radiador passivo de calor, preservando o fluxo luminoso e a fidelidade cromática ao longo dos anos.
 
 ### 3. Conforto Visual e Reprodução de Cor (IRC > 90)
-A tecnologia COB (Chip on Board) combinada com os difusores em acrílico leitoso PMMA e policarbonato anti-UV da Pasilux proporciona um índice de reprodução de cor elevado, valorizando texturas de pedras naturais, madeiras e tecidos em projetos de alto padrão.`
+Com difusores de policarbonato e acrílico leitoso de alta transmitância, os perfis entregam iluminação difusa, homogênea e sem ofuscamento, ideal tanto para projetos residenciais quanto para lojas e ambientes de trabalho.`
   },
   {
-    id: 'artigo-economia-led',
-    slug: 'economia-gerada-pela-iluminacao-led',
-    title: 'A Economia Gerada pela Iluminação de LED em Projetos Comerciais e Residenciais',
+    id: 'artigo-calculo-retorno-led',
+    slug: 'quanto-tempo-leva-para-o-led-se-pagar-em-projeto-comercial',
+    title: 'Quanto tempo leva para o LED se pagar em um projeto comercial: o cálculo de retorno',
     date: '28 Abr 2026',
     category: 'Economia & Planejamento',
     readTime: '5 min',
     image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Na busca por soluções que promovam uma economia mais eficiente e sustentável, a iluminação em LED destaca-se como o investimento de retorno mais rápido na construção civil.',
-    content: `Na busca por soluções que promovam uma economia mais eficiente e sustentável, a iluminação em LED se destaca como uma opção brilhante. Além de oferecer iluminação de alta qualidade, os perfis em alumínio extrudado proporcionam economia direta na manutenção e na conta de energia.
+    excerpt: 'Entenda a equação de payback de retrofit luminotécnico em lojas, concessionárias, escritórios e galpões comerciais utilizando perfis de LED de alta durabilidade.',
+    content: `Na busca por soluções que promovam uma economia mais sustentável e previsível, a iluminação em LED linear de alta performance apresenta o retorno sobre investimento (payback) mais veloz da infraestrutura predial.
 
-### 1. Durabilidade e Redução de Manutenção
-Substituir lâmpadas em pés-direitos duplos ou sancas requer andaimes e mão de obra especializada. Ao especificar perfis de alumínio Pasilux com correta dissipação térmica, a vida útil do sistema é estendida, reduzindo drasticamente custos de manutenção predial.
+### 1. O Cálculo Real de Payback
+Em um espaço comercial de 300 m² operando 12 horas por dia, a transição para LED com perfis de alumínio amortiza todo o investimento de compra e instalação tipicamente entre 8 e 14 meses, considerando a redução direta de tarifa elétrica e a eliminação de trocas constantes de reatores e lâmpadas.
 
-### 2. Baixa Emissão de Calor
-Diferente de lâmpadas antigas que convertiam a maior parte da energia em calor, o LED gera iluminação fria. Isso alivia a carga térmica dos ambientes, resultando em menor esforço dos sistemas de ar-condicionado e menor consumo global de eletricidade.`
+### 2. Redução Drástica de Custos de Manutenção
+Substituir luminárias em pés-direitos duplos ou sancas requer andaimes, fechamento temporário de áreas de venda e contratação de eletricistas. Ao optar por extrusão robusta Pasilux e fitas de qualidade, o ciclo de intervenção cai drasticamente.
+
+### 3. Alívio na Carga Térmica do Ar-Condicionado
+Lâmpadas antigas convertem mais de 80% da energia elétrica consumida em calor indesejado. O LED reduz essa carga térmica, gerando economia adicional indireta nos compressores de climatização comercial.`
   },
   {
-    id: 'artigo-passo-sustentavel',
-    slug: 'iluminacao-led-passo-sustentavel',
-    title: 'Iluminação em LED: Um Passo Sustentável em Direção ao Futuro da Construção',
+    id: 'artigo-led-leed-aqua',
+    slug: 'led-e-certificacao-leed-aqua-o-que-considerar-na-especificacao',
+    title: 'LED e certificação LEED/AQUA: o que considerar na especificação',
     date: '10 Mar 2026',
-    category: 'Design Sustentável',
+    category: 'Sustentabilidade & ESG',
     readTime: '5 min',
     image: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=800&auto=format&fit=crop',
-    excerpt: 'Em um mundo onde a sustentabilidade é cada vez mais crucial, a escolha da iluminação certa desempenha um papel significativo na certificação de edifícios verdes (LEED / AQUA).',
-    content: `Em um mundo onde a sustentabilidade é cada vez mais crucial, a escolha da iluminação certa desempenha um papel significativo na redução do impacto ambiental e na eficiência de recursos naturais.
+    excerpt: 'Parâmetros normativos, reciclabilidade do alumínio e métricas de eficiência energética exigidas para pontuação máxima em edifícios sustentáveis certificados.',
+    content: `A obtenção de selos internacionais de sustentabilidade na construção civil (como LEED e AQUA-HQE) exige comprovação técnica dos materiais especificados no projeto luminotécnico.
 
-### 1. Reciclabilidade do Alumínio
-A liga de alumínio de alta pureza utilizada na extrusão dos perfis Pasilux é 100% reciclável sem perda de propriedades mecânicas, alinhando-se aos princípios da economia circular na indústria da construção.
+### 1. Reciclabilidade do Alumínio Extrudado
+A liga de alumínio de primeira fusão empregada pela Pasilux em Catanduva é 100% reciclável sem perda de integridade mecânica, pontuando diretamente no critério de ciclo de vida dos materiais e economia circular.
 
-### 2. Ausência de Metais Pesados
-Os sistemas em LED não contêm mercúrio nem emitem radiação ultravioleta ou infravermelha, tornando os ambientes mais saudáveis e facilitando o descarte consciente ao término do ciclo de vida.`
+### 2. Ausência de Metais Tóxicos e Mercúrio
+Diferente das tubulares fluorescentes, os sistemas LED não utilizam gases nocivos ou mercúrio pesado, facilitando os planos de gestão de resíduos sólidos exigidos pela certificação.
+
+### 3. Integração com Automação e Dimerização (DALI / 0-10V)
+Os perfis suportam fitas preparadas para protocolos de automação predial, permitindo colheita de luz natural (daylight harvesting) e redução automática do fluxo luminoso nos horários de maior incidência solar.`
+  },
+  {
+    id: 'artigo-embutir-ou-sobrepor',
+    slug: 'perfil-de-led-embutir-ou-sobrepor-qual-escolher-para-cada-forro',
+    title: 'Perfil de LED embutir ou sobrepor: qual escolher pra cada tipo de forro?',
+    date: '18 Fev 2026',
+    category: 'Guia Técnico de Aplicação',
+    readTime: '6 min',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop',
+    excerpt: 'Guia prático para especificar perfis com abas de embutir em gesso/drywall versus perfis de sobrepor em laje maciça, madeira ou superfícies sem rebaixo.',
+    content: `A decisão entre perfis de embutir e perfis de sobrepor depende fundamentalmente da tipologia da superfície e da fase da obra.
+
+### 1. Forros de Gesso Acartonado (Drywall) e Madeira: Perfis de Embutir
+Quando existe rebaixo e espaço livre para recorte, os perfis de embutir com abas de acabamento (como os modelos PSL0006 e PSL0022) oferecem instalação limpa, cobrindo eventuais imperfeições de corte do forro com abas milimétricas.
+
+### 2. Lajes de Concreto Aparente ou Alvenaria Maciça: Perfis de Sobrepor
+Quando não é possível cortar a estrutura de concreto, os perfis de sobrepor (como PSL0007 e PSL0023) são fixados diretamente por presilhas de pressão ou furação de topo, criando um elemento linear arquitetônico proeminente e moderno.
+
+### 3. Dica de Instalação Pasilux
+Sempre verifique a profundidade útil do perfil em relação à largura da fita LED para assegurar a homogeneidade luminosa do difusor leitoso.`
+  },
+  {
+    id: 'artigo-no-frame',
+    slug: 'perfil-no-frame-o-que-e-quando-usar-no-seu-projeto',
+    title: 'Perfil No Frame: o que é e quando vale a pena usar no seu projeto',
+    date: '02 Fev 2026',
+    category: 'Design Arquitetônico',
+    readTime: '7 min',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop',
+    excerpt: 'Descubra como os perfis No Frame (borda infinita) são emassados no drywall para criar rasgos de luz que parecem brotar da própria arquitetura.',
+    content: `O perfil No Frame (ou borda infinita) é o padrão de excelência da arquitetura minimalista de alto padrão.
+
+### 1. Como Funciona a Tecnologia No Frame
+O perfil conta com abas perfuradas de alumínio que recebem tela de reforço e massa corrida (ou gesso), integrando-se completamente à superfície. Após a pintura, nenhuma borda metálica fica visível: apenas o difusor perfeitamente nivelado com o teto.
+
+### 2. Quando Vale a Pena Usar
+É recomendado para salas de estar, livings integrados, corredores longos e recepções corporativas onde a proposta visual é a limpeza absoluta de elementos salientes.
+
+### 3. Cuidados na Execução
+O perfil No Frame deve ser instalado na fase de estruturação do forro de drywall, antes do acabamento de pintura, garantindo alinhamento a laser dos módulos lineares.`
+  },
+  {
+    id: 'artigo-cob-ou-smd',
+    slug: 'cob-ou-smd-qual-fita-de-led-combina-com-cada-perfil-pasilux',
+    title: 'COB ou SMD: qual fita de LED combina com cada perfil Pasilux?',
+    date: '15 Jan 2026',
+    category: 'Tecnologia Luminotécnica',
+    readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop',
+    excerpt: 'Entenda a diferença técnica entre fitas COB e SMD tradicionais e saiba qual escolher de acordo com a profundidade do perfil de alumínio.',
+    content: `A harmonia visual de um perfil iluminado depende do casamento técnico entre a fita LED instalada e a profundidade útil do canal de alumínio.
+
+### 1. Fitas LED COB (Chip on Board)
+Possuem centenas de micropontos de LED em linha contínua sob fósforo uniforme. São indispensáveis em perfis ultra-slim (como perfis de movelaria com menos de 10 mm de profundidade), pois garantem zero pontilhado visível mesmo com difusores finos.
+
+### 2. Fitas LED SMD (2835, 5050, etc.)
+Ideais para perfis mais profundos (acima de 15 mm a 20 mm) ou perfis de grande porte, onde a distância entre a fita e o difusor de acrílico já é suficiente para misturar os cones de luz e criar uma linha contínua.
+
+### 3. Liberdade Pasilux
+Nossos perfis são projetados com largura interna padronizada para receber qualquer fita comercial do mercado, permitindo que a sua revenda utilize os fornecedores de fita de sua confiança.`
+  },
+  {
+    id: 'artigo-calculo-metragem',
+    slug: 'como-calcular-a-metragem-linear-de-perfil-de-led-para-o-seu-projeto',
+    title: 'Como calcular a metragem linear de perfil de LED para o seu projeto',
+    date: '08 Jan 2026',
+    category: 'Planejamento de Obra',
+    readTime: '4 min',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop',
+    excerpt: 'Passo a passo para dimensionar barras de 2m, 3m ou 6m, calcular perdas em esquadrias de 45° e prever fontes de alimentação sem queda de tensão.',
+    content: `Calcular com exatidão as barras de perfil e conexões evita desperdícios de material e atrasos na entrega da obra.
+
+### 1. Medição e Margem de Corte
+Sempre meça o perímetro real no forro ou na marcenaria montada. Em cantos a 90° com corte em meia-esquadria (45°), adicione uma margem de segurança de 5% a 10% para ajustes finos de encaixe.
+
+### 2. Escolha do Comprimento de Barra
+Barras de 3 metros e 6 metros proporcionam menos emendas visíveis em grandes vãos lineares, resultando em acabamento muito superior para galerias, fachadas e corredores.
+
+### 3. Posição das Fontes e Alimentação
+Planeje o posicionamento dos drivers a cada 5 metros de fita para evitar quedas de tensão no final da linha e assegurar brilho homogêneo de ponta a ponta.`
+  },
+  {
+    id: 'artigo-corte-sob-medida',
+    slug: 'perfil-de-led-sob-medida-como-funciona-o-corte-especial-de-fabrica',
+    title: 'Perfil de LED sob medida: como funciona o corte especial de fábrica',
+    date: '20 Dez 2025',
+    category: 'Produção & Indústria',
+    readTime: '5 min',
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop',
+    excerpt: 'Conheça o serviço de corte de precisão em esquadrejadeiras industriais Pasilux, minimizando o trabalho manual e o descarte na obra.',
+    content: `Para marcenarias de grande porte e instaladores de iluminação técnica, o corte de precisão realizado diretamente em fábrica agiliza o cronograma da obra.
+
+### 1. Precisão Milimétrica Industrial
+Com maquinário automatizado de corte a frio e lâminas específicas para perfis de alumínio anodizado, as extremidades saem da fábrica sem rebarbas ou deformações nas calhas do difusor.
+
+### 2. Redução de Descarte no Canteiro
+Ao solicitar lotes já cortados nas dimensões do projeto executivo, o profissional reduz em até 95% o desperdício de pontas de barra e o tempo de instalação no cliente.
+
+### 3. Identificação por Ambientes
+Os perfis podem ser etiquetados e embalados por cômodo ou trecho do projeto (ex: Sala, Quarto Casal, Cozinha), agilizando a separação na entrega da sua revenda.`
   }
 ];
 

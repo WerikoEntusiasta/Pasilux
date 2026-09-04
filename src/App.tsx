@@ -4,12 +4,14 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import ProductsSection from './components/ProductsSection';
+import ResellerSection from './components/ResellerSection';
 import ProjectsGallery from './components/ProjectsGallery';
 import ProjectsSection from './components/ProjectsSection';
 import BlogSection from './components/BlogSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
+import CatalogPdfModal from './components/CatalogPdfModal';
 import ProductsPage from './pages/ProductsPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import BlogPage from './pages/BlogPage';
@@ -20,7 +22,9 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<'home' | 'produtos' | 'produto-detalhe' | 'blog'>('home');
   const [selectedProfileCode, setSelectedProfileCode] = useState<string | null>(null);
   const [selectedBlogSlug, setSelectedBlogSlug] = useState<string | null>(null);
+  const [selectedQuoteProfile, setSelectedQuoteProfile] = useState<string>('');
   const [activeSection, setActiveSection] = useState('home');
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
 
   // Track scroll position for subtle parallax
   const { scrollY } = useScroll();
@@ -147,6 +151,7 @@ export default function App() {
   }, [setIsAdminOpen]);
 
   const handleSelectProfileForQuote = (profileCode: string) => {
+    setSelectedQuoteProfile(profileCode);
     setCurrentPage('home');
     setActiveSection('orcamento');
     window.history.pushState({}, '', '/#orcamento');
@@ -219,6 +224,7 @@ export default function App() {
           setCurrentPage={setCurrentPage}
           onNavigateToCatalog={handleNavigateToCatalog}
           onNavigateToBlog={() => handleNavigateToBlog()}
+          onOpenPdfModal={() => setIsPdfModalOpen(true)}
         />
         
         {currentPage === 'blog' ? (
@@ -254,6 +260,7 @@ export default function App() {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             initialProfileCode={selectedProfileCode}
+            onOpenPdfModal={() => setIsPdfModalOpen(true)}
           />
         ) : (
           /* MAIN HOME VIEW WITH ALL SECTIONS */
@@ -263,8 +270,11 @@ export default function App() {
             
             {/* 2. 👥 QUEM SOMOS Section */}
             <About />
+
+            {/* 3. 🏢 SEJA UM REVENDEDOR PASILUX (PARCERIA COMERCIAL B2B) */}
+            <ResellerSection />
             
-            {/* 3. 📦 PRINCIPAIS PRODUTOS Section */}
+            {/* 4. 📦 PRINCIPAIS PRODUTOS Section */}
             <div className="relative">
               {/* Dedicated Page Promotion Banner over Products Section */}
               <div className="bg-neutral-950 text-white py-4 px-6 border-y border-neutral-800">
@@ -273,13 +283,22 @@ export default function App() {
                     <span className="px-2 py-0.5 rounded bg-gold text-neutral-950 font-bold uppercase text-[10px]">Página Exclusiva</span>
                     <span className="text-neutral-300">Conheça o catálogo completo com todos os modelos industriais da Pasilux</span>
                   </div>
-                  <button
-                    type="button"
-                    onClick={handleNavigateToCatalog}
-                    className="px-4 py-1.5 bg-gold hover:bg-gold-light text-neutral-950 font-bold rounded-lg font-mono text-xs uppercase tracking-wider transition-all cursor-pointer shadow-xs shrink-0"
-                  >
-                    Abrir Catálogo de Produtos →
-                  </button>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => setIsPdfModalOpen(true)}
+                      className="px-3.5 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-gold border border-neutral-700 font-bold rounded-lg font-mono text-xs uppercase tracking-wider transition-all cursor-pointer shadow-xs"
+                    >
+                      Baixar Catálogo PDF
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNavigateToCatalog}
+                      className="px-4 py-1.5 bg-gold hover:bg-gold-light text-neutral-950 font-bold rounded-lg font-mono text-xs uppercase tracking-wider transition-all cursor-pointer shadow-xs"
+                    >
+                      Abrir Catálogo de Produtos →
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -297,7 +316,7 @@ export default function App() {
               />
             </div>
             
-            {/* 4. 🏢 PORTFÓLIO DE PROJETOS REALIZADOS (PROVA SOCIAL) */}
+            {/* 5. 🏢 PORTFÓLIO DE PROJETOS REALIZADOS (PROVA SOCIAL) */}
             <ProjectsGallery 
               onSelectProjectForQuote={() => {
                 const el = document.getElementById('orcamento');
@@ -310,13 +329,13 @@ export default function App() {
               onNavigateToCatalog={handleNavigateToCatalog}
             />
 
-            {/* 5. 🏗️ SOLICITAÇÃO DE ORÇAMENTO SOB MEDIDA */}
-            <ProjectsSection />
+            {/* 6. 🏗️ SOLICITAÇÃO DE ORÇAMENTO SOB MEDIDA */}
+            <ProjectsSection prefilledProfile={selectedQuoteProfile} />
             
-            {/* 6. 📝 BLOG Section */}
+            {/* 7. 📝 BLOG Section */}
             <BlogSection onNavigateToBlogPage={handleNavigateToBlog} />
             
-            {/* 7. 📞 CONTATO Section */}
+            {/* 8. 📞 CONTATO Section */}
             <ContactSection />
           </>
         )}
@@ -325,6 +344,12 @@ export default function App() {
         <Footer 
           onNavigateToProducts={handleNavigateToCatalog}
           onNavigateHome={handleNavigateHome}
+        />
+
+        {/* Global Catalog PDF Lead & Download Modal */}
+        <CatalogPdfModal 
+          isOpen={isPdfModalOpen} 
+          onClose={() => setIsPdfModalOpen(false)} 
         />
       </div>
     </div>

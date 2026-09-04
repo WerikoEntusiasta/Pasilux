@@ -21,7 +21,8 @@ import {
   Compass,
   Lightbulb,
   Building2,
-  CheckSquare
+  CheckSquare,
+  FileDown
 } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import { LEDProfile } from '../types';
@@ -32,15 +33,17 @@ interface ProductsPageProps {
   onSelectProfileForQuote: (profileCode: string) => void;
   onNavigateToProduct?: (profileCode: string) => void;
   initialProfileCode?: string | null;
+  onOpenPdfModal?: () => void;
 }
 
 export default function ProductsPage({ 
   onNavigateHome, 
   onSelectProfileForQuote, 
   onNavigateToProduct,
-  initialProfileCode 
+  initialProfileCode,
+  onOpenPdfModal
 }: ProductsPageProps) {
-  const { profiles, categories: dataCategories } = useData();
+  const { profiles, categories: dataCategories, siteTexts } = useData();
 
   // Dynamic SEO for Products Catalog
   useSEO({
@@ -56,10 +59,8 @@ export default function ProductsPage({
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [selectedApplication, setSelectedApplication] = useState<string>('Todas');
   const [selectedColor, setSelectedColor] = useState<string>('Todos');
-  const [selectedLength, setSelectedLength] = useState<string>('Todos');
   const [selectedWidth, setSelectedWidth] = useState<string>('Todas');
   const [selectedHeight, setSelectedHeight] = useState<string>('Todas');
-  const [onlyCobRecommended, setOnlyCobRecommended] = useState<boolean>(false);
   const [sortBy, setSortBy] = useState<'code-asc' | 'width-asc' | 'width-desc' | 'name-asc'>('code-asc');
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
@@ -111,8 +112,6 @@ export default function ProductsPage({
     'Jequitibá'
   ];
 
-  const lengthsOptions = ['Todos', '1 metro', '2 metros', '3 metros', '6 metros'];
-
   // Extract unique widths and heights from profiles dynamically and sort numerically
   const availableWidths = useMemo(() => {
     const uniqueWidths = Array.from(new Set<number>(profiles.map(p => Number(p.width))));
@@ -146,18 +145,13 @@ export default function ProductsPage({
       const matchesColor = selectedColor === 'Todos' || 
         profile.colors.some(c => c.toLowerCase() === selectedColor.toLowerCase());
 
-      const matchesLength = selectedLength === 'Todos' || 
-        profile.lengths?.some(l => l.toLowerCase() === selectedLength.toLowerCase());
-
       const matchesWidth = selectedWidth === 'Todas' || 
         profile.width === parseInt(selectedWidth.replace('mm', ''), 10);
 
       const matchesHeight = selectedHeight === 'Todas' || 
         profile.height === parseInt(selectedHeight.replace('mm', ''), 10);
 
-      const matchesCob = !onlyCobRecommended || profile.isCobRecommended;
-
-      return matchesSearch && matchesCategory && matchesApplication && matchesColor && matchesLength && matchesWidth && matchesHeight && matchesCob;
+      return matchesSearch && matchesCategory && matchesApplication && matchesColor && matchesWidth && matchesHeight;
     }).sort((a, b) => {
       if (sortBy === 'code-asc') return a.code.localeCompare(b.code);
       if (sortBy === 'name-asc') return a.name.localeCompare(b.name);
@@ -165,15 +159,13 @@ export default function ProductsPage({
       if (sortBy === 'width-desc') return b.width - a.width;
       return 0;
     });
-  }, [profiles, searchTerm, selectedCategory, selectedApplication, selectedColor, selectedLength, selectedWidth, selectedHeight, onlyCobRecommended, sortBy]);
+  }, [profiles, searchTerm, selectedCategory, selectedApplication, selectedColor, selectedWidth, selectedHeight, sortBy]);
 
   const activeFiltersCount = (selectedCategory !== 'Todos' ? 1 : 0) +
     (selectedApplication !== 'Todas' ? 1 : 0) +
     (selectedColor !== 'Todos' ? 1 : 0) +
-    (selectedLength !== 'Todos' ? 1 : 0) +
     (selectedWidth !== 'Todas' ? 1 : 0) +
     (selectedHeight !== 'Todas' ? 1 : 0) +
-    (onlyCobRecommended ? 1 : 0) +
     (searchTerm.trim() !== '' ? 1 : 0);
 
   const resetAllFilters = () => {
@@ -181,16 +173,16 @@ export default function ProductsPage({
     setSelectedCategory('Todos');
     setSelectedApplication('Todas');
     setSelectedColor('Todos');
-    setSelectedLength('Todos');
     setSelectedWidth('Todas');
     setSelectedHeight('Todas');
-    setOnlyCobRecommended(false);
     setSortBy('code-asc');
   };
 
   const handleSimulateQuote = (profileCode: string) => {
+    const prof = profiles.find(p => p.code === profileCode);
+    const details = prof ? `${prof.code} — ${prof.name} (${prof.category})` : profileCode;
     setSelectedProfile(null);
-    onSelectProfileForQuote(profileCode);
+    onSelectProfileForQuote(details);
   };
 
   const faqs = [
@@ -249,19 +241,33 @@ export default function ProductsPage({
           </div>
 
           {/* Title & Headline */}
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono font-bold uppercase tracking-widest">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>Página Oficial de Produtos Pasilux 2026</span>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="max-w-3xl space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-mono font-bold uppercase tracking-widest">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>{siteTexts.productsCatalogBadge || 'Catálogo Oficial de Produtos Pasilux'}</span>
+              </div>
+              
+              <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+                {siteTexts.productsCatalogTitle || 'Catálogo de Perfis de LED Industriais'}
+              </h1>
+              
+              <p className="text-neutral-400 text-sm sm:text-base leading-relaxed font-light">
+                {siteTexts.productsCatalogSubtitle || 'Explore toda a linha de extrusão técnica Pasilux. Soluções completas para iluminação de marcenaria, forros de gesso, lajes maciças, sancas perimetrais e painéis ripados.'}
+              </p>
             </div>
-            
-            <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
-              Catálogo de Perfis de LED Industriais
-            </h1>
-            
-            <p className="text-neutral-400 text-sm sm:text-base leading-relaxed font-light">
-              Explore toda a linha de extrusão técnica Pasilux. Soluções completas para iluminação de marcenaria, forros de gesso, lajes maciças, sancas perimetrais e painéis ripados.
-            </p>
+
+            {onOpenPdfModal && (
+              <button
+                type="button"
+                onClick={onOpenPdfModal}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gold hover:bg-gold-light text-neutral-950 font-bold font-mono text-xs uppercase tracking-wider transition-all shadow-lg shadow-gold/20 shrink-0 cursor-pointer"
+                id="products-page-pdf-download-btn"
+              >
+                <FileDown className="h-4 w-4 text-neutral-950" />
+                <span>Baixar Catálogo em PDF</span>
+              </button>
+            )}
           </div>
 
           {/* Value Proposition Highlights Banner */}
@@ -452,7 +458,7 @@ export default function ProductsPage({
           </div>
 
           {/* Secondary Filters Dropdowns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 pt-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 pt-1">
             
             {/* Filter: Largura (mm) */}
             <div className="space-y-1.5">
@@ -526,24 +532,6 @@ export default function ProductsPage({
               </select>
             </div>
 
-            {/* Filter: Comprimento */}
-            <div className="space-y-1.5">
-              <label className="text-xs font-mono text-neutral-600 font-bold uppercase block truncate">
-                Comprimento
-              </label>
-              <select
-                value={selectedLength}
-                onChange={(e) => setSelectedLength(e.target.value)}
-                className="w-full px-3 py-2 bg-white border border-neutral-200 rounded-xl text-xs text-neutral-800 focus:outline-none focus:border-gold cursor-pointer"
-              >
-                {lengthsOptions.map((l, idx) => (
-                  <option key={idx} value={l}>
-                    {l}
-                  </option>
-                ))}
-              </select>
-            </div>
-
             {/* Sort Dropdown */}
             <div className="space-y-1.5">
               <label className="text-xs font-mono text-neutral-600 font-bold uppercase block truncate">
@@ -563,17 +551,11 @@ export default function ProductsPage({
 
           </div>
 
-          {/* Bottom Bar: Checkbox & Reset Button */}
+          {/* Bottom Bar: Results Count & Reset Button */}
           <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-neutral-200/60 text-xs">
-            <label className="flex items-center gap-2 cursor-pointer font-mono font-semibold text-neutral-700 hover:text-neutral-950 transition-colors">
-              <input
-                type="checkbox"
-                checked={onlyCobRecommended}
-                onChange={(e) => setOnlyCobRecommended(e.target.checked)}
-                className="rounded border-neutral-300 text-gold focus:ring-gold accent-gold h-4 w-4 cursor-pointer"
-              />
-              <span>Recomendados para Fita LED COB (Sem pontos de luz)</span>
-            </label>
+            <span className="font-mono text-neutral-500 text-[11px]">
+              Exibindo <strong>{filteredProfiles.length}</strong> de <strong>{profiles.length}</strong> modelos industriais
+            </span>
 
             {activeFiltersCount > 0 && (
               <button

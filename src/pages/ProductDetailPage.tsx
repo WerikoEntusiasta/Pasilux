@@ -240,11 +240,6 @@ export default function ProductDetailPage({
                 <span className="px-3 py-1 bg-white/20 text-white text-xs font-mono font-bold uppercase rounded-lg backdrop-blur-md">
                   {product.category}
                 </span>
-                {product.isCobRecommended && (
-                  <span className="px-3 py-1 bg-gold text-neutral-950 text-xs font-mono font-extrabold rounded-lg backdrop-blur-md">
-                    COB 100% Contínuo
-                  </span>
-                )}
               </div>
 
               {/* Image Title Overlay */}
@@ -313,11 +308,6 @@ export default function ProductDetailPage({
             
             {/* Title & Headline */}
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold-dark text-xs font-mono font-bold uppercase tracking-wider mb-2">
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>Linha Industrial Pasilux 2026</span>
-              </div>
-
               <h1 className="font-serif text-3xl sm:text-4xl font-bold text-neutral-950 tracking-tight leading-tight">
                 {product.name}
               </h1>
@@ -430,7 +420,7 @@ export default function ProductDetailPage({
             <div className="space-y-3 pt-2">
               <button
                 type="button"
-                onClick={() => onSelectProfileForQuote(product.code)}
+                onClick={() => onSelectProfileForQuote(`${product.code} — ${selectedColor} — ${selectedLength}`)}
                 className="w-full py-4 bg-gold hover:bg-gold-light text-neutral-950 font-extrabold rounded-2xl text-xs uppercase tracking-widest transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-gold/25 hover:scale-[1.01]"
               >
                 <span>Simular Este Perfil no Orçamento</span>
@@ -504,7 +494,7 @@ export default function ProductDetailPage({
                   </div>
                   <div className="flex items-center justify-between py-1">
                     <span className="text-neutral-400">Horário de Suporte:</span>
-                    <span className="text-gold">{siteTexts.contactHours || 'Seg a Sex: 08:00 às 18:00'}</span>
+                    <span className="text-gold">{siteTexts.contactHours || 'Seg a Sex: 07:30 às 17:30'}</span>
                   </div>
                 </div>
 

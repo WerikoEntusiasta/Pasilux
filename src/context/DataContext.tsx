@@ -14,20 +14,119 @@ const DEFAULT_CATEGORIES: string[] = [
 ];
 
 const DEFAULT_TEXTS: SiteTexts = {
-  heroTagline: 'Tradição & Inovação em Alumínio',
-  heroTitle1: 'Moldando o alumínio,',
-  heroTitle2: 'iluminando o futuro.',
-  heroDescription: 'Catanduva, SP — Derivada de um grupo metalúrgico consolidado com mais de 60 anos de herança, a Pasilux revoluciona ambientes através de perfis de LED de alta precisão.',
-  aboutTitle: 'Uma Herança de Confiança, Comprometimento e Inovação.',
+  // Navigation
+  navBrandSubtitle: 'Perfis de LED & Alumínio',
+  navLinkHome: 'Início',
+  navLinkAbout: 'Quem Somos',
+  navLinkProducts: 'Produtos',
+  navLinkProjects: 'Projetos',
+  navLinkBlog: 'Blog',
+  navLinkContact: 'Contato',
+  navCtaButton: 'Quero ser revendedor',
+  navWhatsappText: 'WhatsApp Direto',
+
+  // Hero Section
+  heroTagline: 'Direto de Fábrica • Catanduva - SP',
+  heroTitle1: 'Perfis de LED em alumínio direto de fábrica —',
+  heroTitle2: 'para lojas e distribuidores em todo o Brasil.',
+  heroDescription: 'Catálogo com 34+ modelos industriais, condições especiais de revenda e suporte técnico para grandes lotes.',
+  heroExploreBtn: 'Quero ser revendedor',
+  heroWhatsappBtn: 'Tenho um projeto grande / Falar com consultor',
+  heroWhatsappMessage: 'Olá! Tenho um projeto de grande volume / compra em lote de perfis de LED e gostaria de falar com um consultor comercial da Pasilux.',
+  heroScrollText: 'Deslize para ver mais',
+
+  // About Section (Quem Somos)
+  aboutBadge: 'Quem Somos',
+  aboutTitle: 'Há 4 anos no mercado, com 60 anos de know-how em alumínio por trás.',
+  aboutSubtitle: 'Nossa história e infraestrutura tecnológica em Catanduva - SP',
   aboutTab1Label: 'Nossa Origem (60+ Anos)',
   aboutTab2Label: 'Expertise em Alumínio (20+ Anos)',
+  about60Badge: 'CATANDUVA - SP • GRUPO METALÚRGICO FUNDADOR',
+  about60Title: 'Tradição, Precisão e Fornecimento Estável',
+  about60P1: 'Se você tem uma loja, distribuidora ou marcenaria e já cansou de depender de importação com prazo incerto, ou de fornecedor que entrega variação de qualidade lote a lote, a Pasilux existe pra resolver isso. Estamos no mercado há 4 anos, mas carregamos mais de 60 anos de know-how em extrusão de alumínio herdados do grupo metalúrgico que nos originou, e mais de 20 anos de expertise específica em perfis técnicos.',
+  about60P2: 'Na prática, isso significa fornecimento estável direto de fábrica, tolerância dimensional que não varia de lote a lote, e um catálogo de 34+ modelos pra você ampliar seu mix sem perder qualidade.',
+  about60P3: 'Se o seu negócio é revender ou aplicar perfil de LED com qualidade e previsibilidade, é pra isso que a Pasilux existe.',
+  aboutCard1Title: 'Fornecimento Estável',
+  aboutCard1Desc: 'Produção própria em Catanduva/SP, sem depender de importação ou de terceiros. Seu estoque não fica refém de prazo internacional.',
+  aboutCard2Title: 'Condições de Revenda Sob Medida',
+  aboutCard2Desc: 'Preço e prazo pensados pra fazer sentido na sua operação, com condições comerciais que acompanham o volume da sua loja ou distribuidora.',
+  aboutCard3Title: 'Suporte Técnico pro Seu Cliente Final',
+  aboutCard3Desc: 'Ficha técnica completa, comparador de fita LED e equipe disponível pra tirar a dúvida técnica que o seu cliente trouxer até você.',
+  about20Badge: 'CATANDUVA - SP • ESPECIALISTAS EM EXTRUSÃO',
+  about20Title: 'Duas Décadas Dedicadas ao Alumínio',
+  about20P1: 'Situada em Catanduva, no interior do Estado de São Paulo, a Pasilux é a mais recente adição a um grupo consolidado que atua há mais de 20 anos no mercado de alumínio. Embora a Pasilux seja uma nova marca, carregamos conosco a rica tradição, experiência e expertise desse grupo renomado.',
+  about20P2: 'Nossa paixão por inovação e excelência nos guia em cada passo. Acreditamos que o alumínio, quando moldado com precisão e inovação, tem o poder de revolucionar ambientes e experiências. É essa convicção que nos motiva a explorar constantemente novas técnicas, designs e soluções para atender às demandas dinâmicas de nossos clientes.',
+  about20P3: 'Ao optar pela Pasilux, você não está apenas escolhendo produtos de alta qualidade, mas também uma herança de confiança e comprometimento que vem sendo construída ao longo de duas décadas. Estamos aqui para iluminar, inovar e inspirar.',
+  about20StatNumber: '20+',
+  about20StatTitle: 'Anos de Mercado em Alumínio',
+  about20StatDesc: 'Nossa liga de alumínio passa por processos rigorosos de têmpera e anodização, garantindo dissipação térmica excepcional para fitas de LED de alta potência. Uma verdadeira revolução de design estrutural.',
+
+  // Products Highlights Section
+  productsBadge: 'Destaques Pasilux',
+  productsTitle: '6 Principais Perfis de LED',
+  productsSubtitle: 'Conheça os modelos industriais mais especificados por arquitetos, marceneiros e lighting designers em todo o Brasil.',
+  productsCtaCatalog: 'Ver Catálogo Completo (34+ Modelos)',
+  productsCatalogBadge: 'Página Oficial de Produtos Pasilux 2026',
+  productsCatalogTitle: 'Catálogo de Perfis de LED Industriais',
+  productsCatalogSubtitle: 'Consulte especificações técnicas, tolerâncias, abas de embutir e medidas nominais para projetos luminotécnicos de alta precisão.',
+
+  // Projects Section
+  projectsBadge: 'Portfólio & Obras Entregues',
+  projectsTitle: 'Projetos Realizados com Pasilux',
+  projectsSubtitle: 'Inspire-se com obras de arquitetura residencial, corporativa e marcenaria fina de alto padrão especificadas com nossos perfis de alumínio e tecnologia LED.',
+  projectsCtaQuote: 'Solicitar Orçamento deste Projeto',
+
+  // Budget Section
+  budgetBadge: 'Cotação Direta de Fábrica',
+  budgetTitle: 'Solicite um Orçamento Sob Medida',
+  budgetSubtitle: 'Envie as necessidades do seu projeto, medidas lineares ou anexe sua planta luminotécnica para receber uma cotação detalhada direto da fábrica Pasilux.',
+  budgetFormTitle: 'Dados para Solicitação de Orçamento',
+  budgetButtonText: 'Solicitar Orçamento',
+  budgetSuccessTitle: 'Recebemos sua Solicitação!',
+  budgetSuccessMessage: 'Nossa equipe técnica e comercial entrará em contato em até 24 horas úteis via WhatsApp ou E-mail com a sua cotação personalizada direto de fábrica.',
+  budgetHowItWorksTitle: 'Como Funciona',
+  budgetStep1: 'Você envia as dimensões, modelo desejado ou anexe o arquivo do projeto.',
+  budgetStep2: 'Nossa equipe calcula a cotação exata de fábrica e valida o dimensionamento.',
+  budgetStep3: 'Entregamos com corte sob medida e suporte técnico em todo o Brasil.',
+  budgetProNoticeTitle: 'Atendimento a Profissionais',
+  budgetProNoticeDesc: 'Arquitetos, lighting designers, engenheiros e marcenarias contam com suporte técnico dedicado e condições de faturamento direto de fábrica para grandes lotes.',
+  budgetSpecialMeasuresNotice: 'Medidas Especiais: Comprimentos fora da lista padrão (1m, 2m, 3m) são atendidos sob encomenda mediante verificação de viabilidade técnica.',
+
+  // Blog Section
+  blogBadge: 'Informativos & Insights',
+  blogTitle: 'Blog Pasilux',
+  blogSubtitle: 'Fique por dentro das novidades tecnológicas, guias de economia de consumo e soluções sustentáveis ligadas à iluminação de LED.',
+  blogCtaViewAll: 'Ver Todos os Artigos Técnicos',
+  blogPageTitle: 'Artigos Técnicos e Guias Luminotécnicos',
+  blogPageSubtitle: 'Conteúdo aprofundado sobre iluminação linear de LED, eficiência energética, cálculo luminotécnico e marcenaria de alto padrão.',
+
+  // Catalog PDF Modal
+  catalogModalBadge: 'Download Imediato',
+  catalogModalTitle: 'Baixar Catálogo Técnico 2026 (PDF)',
+  catalogModalSubtitle: 'Receba a versão técnica completa com todas as 34 geometrias, cotas de embutir e recomendações de dissipação térmica.',
+  catalogModalButtonText: 'Baixar Catálogo Técnico Grátis',
+
+  // Contact Section
+  contactBadge: 'Atendimento Pasilux',
+  contactTitle: 'Fale com Nossos Consultores',
+  contactDescription: 'Estamos prontos para atender você! Fale diretamente com nossa equipe técnica pelo WhatsApp oficial, telefone ou envie sua mensagem abaixo.',
   contactPhone: '(17) 99106-6398',
   contactWhatsapp: '(17) 99106-6398',
   contactWhatsappRaw: '5517991066398',
   contactEmail: 'contato@pasilux.com.br',
   contactAddress: 'Catanduva, São Paulo, Brasil',
-  contactHours: 'Segunda a Sexta: 08:00 às 18:00',
-  contactSubtitle: 'Nossa matriz de atendimento ao cliente e parque tecnológico de extrusão e moldagem estão estrategicamente situados em Catanduva, atendendo com agilidade todo o estado de São Paulo e o Brasil.',
+  contactHours: 'Segunda a Sexta: 07:30 às 17:30',
+  contactSubtitle: 'Nossa matriz de atendimento ao cliente e parque tecnológico de moldagem estão estrategicamente situados em Catanduva, atendendo com agilidade todo o estado de São Paulo e o Brasil.',
+  contactFormTitle: 'Envie uma Mensagem Direta',
+  contactButtonText: 'Enviar Mensagem',
+  contactSuccessTitle: 'Mensagem Enviada com Sucesso!',
+  contactSuccessMessage: 'Agradecemos o seu contato. Nossa equipe retornará o mais rápido possível através do seu WhatsApp ou E-mail.',
+
+  // Footer
+  footerSlogan: 'Tradição metalúrgica de mais de 60 anos unida à inovação da extrusão de perfis de alumínio. Elevando o padrão de projetos luminotécnicos residenciais e corporativos.',
+  footerLocationNotice: 'Catanduva, São Paulo, Brasil — Polo Metalúrgico de Alumínio',
+  footerCopyright: 'Copyright © 2026 Pasilux – Todos os direitos reservados.',
+  footerBackToTop: 'Voltar ao topo',
 };
 
 const INITIAL_REPRESENTATIVES: Representative[] = [
@@ -189,7 +288,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (data.profiles && data.profiles.length > 0) setProfiles(data.profiles);
         if (data.categories && data.categories.length > 0) setCategories(data.categories);
         if (data.representatives) setRepresentatives(data.representatives);
-        if (data.siteTexts) setSiteTexts(data.siteTexts);
+        if (data.siteTexts) setSiteTexts(prev => ({ ...DEFAULT_TEXTS, ...data.siteTexts }));
         if (data.leads) setLeads(data.leads);
         if (data.budgets) setBudgets(data.budgets);
       }

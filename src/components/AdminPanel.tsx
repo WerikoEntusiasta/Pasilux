@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { LEDProfile, Lead, Budget, Representative } from '../types';
 import { 
-  X, Settings, Edit3, Plus, Trash2, Database, Users, FileText, RefreshCw, Save, Download, Check, Eye, Sliders, Layout, Package, Info, Tag, MapPin, Phone, Mail, Building, PlusCircle, AlertTriangle, Paperclip, BarChart3, TrendingUp, Copy, ExternalLink, FileSpreadsheet, CheckCircle, Clock, Sparkles, Filter, MessageSquare
+  X, Settings, Edit3, Plus, Trash2, Database, Users, FileText, RefreshCw, Save, Download, Check, Eye, Sliders, Layout, Package, Info, Tag, MapPin, Phone, Mail, Building, PlusCircle, AlertTriangle, Paperclip, BarChart3, TrendingUp, Copy, ExternalLink, FileSpreadsheet, CheckCircle, Clock, Sparkles, Filter, MessageSquare, Send, BookOpen, Layers, Compass
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -81,6 +81,7 @@ export default function AdminPanel() {
   });
 
   const [textsForm, setTextsForm] = useState(siteTexts);
+  const [textsSubTab, setTextsSubTab] = useState<'all' | 'nav' | 'hero' | 'about' | 'products' | 'projects' | 'budget' | 'blog' | 'contact' | 'footer' | 'smtp'>('all');
   const [leadSearch, setLeadSearch] = useState('');
   const [budgetSearch, setBudgetSearch] = useState('');
 
@@ -1603,284 +1604,1056 @@ export default function AdminPanel() {
                       </button>
                     </div>
 
-                    {/* SECTION 1: CONTACT & WHATSAPP CHANNELS */}
-                    <div className="p-5 bg-neutral-900/80 border border-gold/30 rounded-2xl space-y-4">
-                      <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
-                        <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
-                          <MessageSquare className="h-4 w-4" />
-                          1. Central de Contato &amp; WhatsApp Oficial
-                        </h4>
-                        <span className="text-[10px] font-mono text-neutral-400">Direcionamento central do site</span>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                        <div>
-                          <label className="block text-neutral-300 font-mono mb-1 font-semibold">
-                            WhatsApp Formatado (Exibição Visual) *
-                          </label>
-                          <input 
-                            type="text" 
-                            value={textsForm.contactWhatsapp || ''} 
-                            onChange={e => {
-                              const val = e.target.value;
-                              const rawDigits = val.replace(/\D/g, '');
-                              const rawFormatted = rawDigits.startsWith('55') ? rawDigits : `55${rawDigits}`;
-                              setTextsForm({
-                                ...textsForm, 
-                                contactWhatsapp: val,
-                                contactWhatsappRaw: rawFormatted
-                              });
-                            }} 
-                            placeholder="(17) 99106-6398"
-                            className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
-                          />
-                          <p className="text-[10px] text-neutral-400 mt-1">Exibido nos botões, cabeçalho e rodapé.</p>
-                        </div>
-
-                        <div>
-                          <label className="block text-neutral-300 font-mono mb-1 font-semibold">
-                            WhatsApp Numérico (Link wa.me com DDI) *
-                          </label>
-                          <input 
-                            type="text" 
-                            value={textsForm.contactWhatsappRaw || ''} 
-                            onChange={e => setTextsForm({...textsForm, contactWhatsappRaw: e.target.value})} 
-                            placeholder="5517991066398"
-                            className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
-                          />
-                          <p className="text-[10px] text-neutral-400 mt-1">Código internacional + DDD + Número (ex: 5517991066398).</p>
-                        </div>
-
-                        <div>
-                          <label className="block text-neutral-300 font-mono mb-1 font-semibold">
-                            Telefone Fixo / Comercial
-                          </label>
-                          <input 
-                            type="text" 
-                            value={textsForm.contactPhone || ''} 
-                            onChange={e => setTextsForm({...textsForm, contactPhone: e.target.value})} 
-                            placeholder="(17) 99106-6398"
-                            className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-neutral-300 font-mono mb-1 font-semibold">
-                            E-mail Corporativo de Atendimento *
-                          </label>
-                          <input 
-                            type="email" 
-                            value={textsForm.contactEmail || ''} 
-                            onChange={e => setTextsForm({...textsForm, contactEmail: e.target.value})} 
-                            placeholder="contato@pasilux.com.br"
-                            className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-neutral-300 font-mono mb-1 font-semibold">
-                            Endereço / Localização da Fábrica
-                          </label>
-                          <input 
-                            type="text" 
-                            value={textsForm.contactAddress || ''} 
-                            onChange={e => setTextsForm({...textsForm, contactAddress: e.target.value})} 
-                            placeholder="Catanduva, São Paulo, Brasil"
-                            className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
-                          />
-                        </div>
-
-                        <div>
-                          <label className="block text-neutral-300 font-mono mb-1 font-semibold">
-                            Horário de Suporte Técnico
-                          </label>
-                          <input 
-                            type="text" 
-                            value={textsForm.contactHours || ''} 
-                            onChange={e => setTextsForm({...textsForm, contactHours: e.target.value})} 
-                            placeholder="Seg a Sex: 08:00 às 18:00"
-                            className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
-                          />
-                        </div>
-                      </div>
-
-                      {/* Test link preview */}
-                      <div className="p-3 bg-neutral-950 rounded-xl border border-neutral-800 flex items-center justify-between text-xs">
-                        <span className="text-neutral-400 font-mono">
-                          Link direto WhatsApp ativo: <strong className="text-emerald-400">https://wa.me/{(textsForm.contactWhatsappRaw || '5517991066398').replace(/\D/g, '')}</strong>
-                        </span>
-                        <a
-                          href={`https://wa.me/${(textsForm.contactWhatsappRaw || '5517991066398').replace(/\D/g, '')}?text=Teste%20de%20contato%20Pasilux`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-mono text-[11px] font-bold flex items-center gap-1"
+                    {/* Category quick navigation tabs */}
+                    <div className="flex items-center gap-1.5 overflow-x-auto pb-2 text-[11px] font-mono shrink-0">
+                      {[
+                        { id: 'all', label: 'Todos os Textos' },
+                        { id: 'nav', label: '1. Cabeçalho (Navbar)' },
+                        { id: 'hero', label: '2. Hero (Topo)' },
+                        { id: 'about', label: '3. Quem Somos' },
+                        { id: 'products', label: '4. Produtos & Catálogo' },
+                        { id: 'projects', label: '5. Projetos' },
+                        { id: 'budget', label: '6. Orçamentos' },
+                        { id: 'blog', label: '7. Blog' },
+                        { id: 'contact', label: '8. Contato & Telefones' },
+                        { id: 'footer', label: '9. Rodapé (Footer)' },
+                        { id: 'smtp', label: '10. E-mail (SMTP)' },
+                      ].map(tab => (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          onClick={() => setTextsSubTab(tab.id as any)}
+                          className={`px-3 py-1.5 rounded-xl border transition-all cursor-pointer whitespace-nowrap ${
+                            textsSubTab === tab.id
+                              ? 'bg-gold text-neutral-950 font-bold border-gold shadow-sm'
+                              : 'bg-neutral-900 text-neutral-400 border-neutral-800 hover:bg-neutral-800 hover:text-white'
+                          }`}
                         >
-                          <ExternalLink className="h-3 w-3" /> Testar Link
-                        </a>
-                      </div>
+                          {tab.label}
+                        </button>
+                      ))}
                     </div>
 
-                    {/* SECTION 2: SMTP & AUTOMATIC EMAIL DISPATCH STATUS */}
-                    <div className="p-5 bg-neutral-900/80 border border-sky-500/30 rounded-2xl space-y-4">
-                      <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
-                        <div className="flex items-center gap-2">
-                          <Mail className="h-4 w-4 text-sky-400" />
-                          <h4 className="font-mono text-xs font-bold text-sky-400 uppercase tracking-wider">
-                            2. Envio Automático de E-mails (SMTP &amp; Notificações)
+                    {/* 1. NAVBAR / CABEÇALHO */}
+                    {(textsSubTab === 'all' || textsSubTab === 'nav') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <Compass className="h-4 w-4" />
+                            1. Cabeçalho, Logo &amp; Menu de Navegação (Navbar)
                           </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Topo de todas as páginas</span>
                         </div>
-                        {emailStatus?.configured ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                            <CheckCircle className="h-3 w-3" /> SMTP Ativo
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                            <AlertTriangle className="h-3 w-3" /> Variáveis Pendentes no .env
-                          </span>
-                        )}
+
+                        <div className="space-y-3.5 text-xs">
+                          <div>
+                            <label className="block text-neutral-300 font-mono mb-1 font-semibold">Nome / Marca no Cabeçalho (Texto do Logo)</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.navBrand || ''} 
+                              onChange={e => setTextsForm({...textsForm, navBrand: e.target.value})} 
+                              placeholder="PASILUX"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Link 1 (Início)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navLinkHome || ''} 
+                                onChange={e => setTextsForm({...textsForm, navLinkHome: e.target.value})} 
+                                placeholder="Início"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Link 2 (Quem Somos)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navLinkAbout || ''} 
+                                onChange={e => setTextsForm({...textsForm, navLinkAbout: e.target.value})} 
+                                placeholder="Quem Somos"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Link 3 (Produtos)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navLinkProducts || ''} 
+                                onChange={e => setTextsForm({...textsForm, navLinkProducts: e.target.value})} 
+                                placeholder="Produtos"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Link 4 (Projetos)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navLinkProjects || ''} 
+                                onChange={e => setTextsForm({...textsForm, navLinkProjects: e.target.value})} 
+                                placeholder="Projetos"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Link 5 (Blog)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navLinkBlog || ''} 
+                                onChange={e => setTextsForm({...textsForm, navLinkBlog: e.target.value})} 
+                                placeholder="Blog"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Link 6 (Contato)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navLinkContact || ''} 
+                                onChange={e => setTextsForm({...textsForm, navLinkContact: e.target.value})} 
+                                placeholder="Contato"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Botão Catálogo (Navbar)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navCtaCatalog || ''} 
+                                onChange={e => setTextsForm({...textsForm, navCtaCatalog: e.target.value})} 
+                                placeholder="Catálogo PDF"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Botão WhatsApp (Navbar)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.navCtaWhatsapp || ''} 
+                                onChange={e => setTextsForm({...textsForm, navCtaWhatsapp: e.target.value})} 
+                                placeholder="Fale no WhatsApp"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                    )}
 
-                      <p className="text-xs text-neutral-300 leading-relaxed">
-                        Quando um cliente envia um formulário de <strong className="text-white">Contato</strong> ou solicitação de <strong className="text-white">Orçamento Sob Medida</strong>, o sistema salva o registro no banco de dados e dispara automaticamente um e-mail com todos os dados preenchidos, plantas em anexo e links diretos para resposta.
-                      </p>
-
-                      {/* Status Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                        <div className="p-3 bg-neutral-950 rounded-xl border border-neutral-800 space-y-1">
-                          <span className="text-[10px] font-mono text-neutral-500 uppercase">Servidor SMTP Atual:</span>
-                          <p className="font-mono font-bold text-white">{emailStatus?.host || 'smtp.gmail.com'}</p>
+                    {/* 2. HERO / TOPO */}
+                    {(textsSubTab === 'all' || textsSubTab === 'hero') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <Sparkles className="h-4 w-4" />
+                            2. Hero (Apresentação Principal no Topo da Página)
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Primeira dobra do site</span>
                         </div>
-                        <div className="p-3 bg-neutral-950 rounded-xl border border-neutral-800 space-y-1">
-                          <span className="text-[10px] font-mono text-neutral-500 uppercase">Destinatário dos Formulários (EMAIL_TO):</span>
-                          <p className="font-mono font-bold text-gold">{emailStatus?.recipient || textsForm.contactEmail || 'contato@pasilux.com.br'}</p>
+
+                        <div className="space-y-3.5 text-xs">
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Tagline Superior do Hero</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.heroTagline || ''} 
+                              onChange={e => setTextsForm({...textsForm, heroTagline: e.target.value})} 
+                              placeholder="Indústria Brasileira de Perfis de LED"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Título Hero (Linha 1)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.heroTitle1 || ''} 
+                                onChange={e => setTextsForm({...textsForm, heroTitle1: e.target.value})} 
+                                placeholder="Iluminação Linear"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Título Hero (Linha 2)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.heroTitle2 || ''} 
+                                onChange={e => setTextsForm({...textsForm, heroTitle2: e.target.value})} 
+                                placeholder="com Precisão Industrial"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Descrição Principal do Hero</label>
+                            <textarea 
+                              rows={3} 
+                              value={textsForm.heroDescription || ''} 
+                              onChange={e => setTextsForm({...textsForm, heroDescription: e.target.value})} 
+                              placeholder="Extrusão própria de alumínio de alta pureza..."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Texto Botão 1 (Catálogo)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.heroButtonCatalog || ''} 
+                                onChange={e => setTextsForm({...textsForm, heroButtonCatalog: e.target.value})} 
+                                placeholder="Explorar Catálogo de Perfis"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Texto Botão 2 (Consultor Técnico)</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.heroButtonConsultant || ''} 
+                                onChange={e => setTextsForm({...textsForm, heroButtonConsultant: e.target.value})} 
+                                placeholder="Falar com Consultor Técnico"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Texto Indicador de Rolagem</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.heroScrollText || ''} 
+                              onChange={e => setTextsForm({...textsForm, heroScrollText: e.target.value})} 
+                              placeholder="Role para explorar a engenharia luminotécnica"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
                         </div>
                       </div>
+                    )}
 
-                      {/* Guide of Environment Variables */}
-                      <div className="p-3.5 bg-neutral-950/70 rounded-xl border border-neutral-800 text-[11px] font-mono space-y-2">
-                        <div className="flex items-center justify-between text-neutral-400 font-bold uppercase text-[10px]">
-                          <span>Variáveis de Ambiente (.env)</span>
-                          <span className="text-sky-400">Configuração de Produção</span>
-                        </div>
-                        <div className="text-neutral-300 space-y-1 text-[10px] leading-relaxed">
-                          <div><code className="text-gold font-bold">SMTP_HOST</code>: Host do servidor (ex: <em>smtp.gmail.com</em>, <em>smtp.hostinger.com</em>, <em>smtp.resend.com</em>)</div>
-                          <div><code className="text-gold font-bold">SMTP_PORT</code>: Porta de envio (ex: <em>587</em> para TLS ou <em>465</em> para SSL)</div>
-                          <div><code className="text-gold font-bold">SMTP_USER</code>: Usuário ou e-mail de autenticação</div>
-                          <div><code className="text-gold font-bold">SMTP_PASS</code>: Senha ou App Password do provedor de e-mail</div>
-                          <div><code className="text-gold font-bold">EMAIL_TO</code>: E-mail que receberá as mensagens (ex: <em>{textsForm.contactEmail || 'contato@pasilux.com.br'}</em>)</div>
-                        </div>
-                      </div>
-
-                      {/* Interactive Test Tool */}
-                      <div className="p-3.5 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
-                        <div className="flex items-center justify-between">
-                          <label className="text-xs font-bold text-neutral-200 flex items-center gap-1.5 font-mono">
-                            <Sparkles className="h-3.5 w-3.5 text-gold" />
-                            Testar Envio de E-mail de Notificação
-                          </label>
-                          <span className="text-[10px] text-neutral-400">Verifique a conexão SMTP</span>
+                    {/* 3. QUEM SOMOS / INSTITUCIONAL */}
+                    {(textsSubTab === 'all' || textsSubTab === 'about') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <Building className="h-4 w-4" />
+                            3. Seção Quem Somos / Institucional
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">História e diferenciais</span>
                         </div>
 
-                        <div className="flex flex-col sm:flex-row gap-2">
-                          <input
-                            type="email"
-                            value={testEmailRecipient}
-                            onChange={e => setTestEmailRecipient(e.target.value)}
-                            placeholder="seu-email@exemplo.com"
-                            className="flex-1 p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white text-xs font-mono focus:outline-none focus:border-sky-400"
-                          />
-                          <button
-                            type="button"
-                            onClick={handleSendTestEmail}
-                            disabled={testEmailLoading}
-                            className="px-4 py-2.5 bg-sky-600 hover:bg-sky-500 disabled:bg-neutral-800 text-white font-bold rounded-xl text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all shrink-0"
-                          >
-                            {testEmailLoading ? (
-                              <>
-                                <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                                Enviando...
-                              </>
-                            ) : (
-                              <>
-                                <Mail className="h-3.5 w-3.5" />
-                                Enviar E-mail de Teste
-                              </>
-                            )}
-                          </button>
-                        </div>
+                        <div className="space-y-3.5 text-xs">
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Badge / Selo da Seção</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.aboutBadge || ''} 
+                              onChange={e => setTextsForm({...textsForm, aboutBadge: e.target.value})} 
+                              placeholder="Mais de 60 Anos de Excelência Industrial"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
 
-                        {testEmailResult && (
-                          <div className={`p-3 rounded-xl border text-xs leading-relaxed ${testEmailResult.success ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' : 'bg-red-500/10 border-red-500/30 text-red-300'}`}>
-                            {testEmailResult.success ? (
-                              <div className="flex items-center gap-2">
-                                <Check className="h-4 w-4 text-emerald-400 shrink-0" />
-                                <span>{testEmailResult.message || 'E-mail de teste disparado com sucesso! Verifique sua caixa de entrada.'}</span>
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Título Principal</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.aboutTitle || ''} 
+                              onChange={e => setTextsForm({...textsForm, aboutTitle: e.target.value})} 
+                              placeholder="Tradição Metalúrgica aliada à Precisão da Extrusão de Alumínio"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Subtítulo Institucional</label>
+                            <textarea 
+                              rows={2}
+                              value={textsForm.aboutSubtitle || ''} 
+                              onChange={e => setTextsForm({...textsForm, aboutSubtitle: e.target.value})} 
+                              placeholder="Com mais de seis décadas de história produtiva..."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div className="p-4 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
+                            <span className="font-mono text-xs font-bold text-neutral-300 uppercase">Bloco 1: Tradição Fabril</span>
+                            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Anos em Destaque</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.aboutHeritageYears || ''} 
+                                  onChange={e => setTextsForm({...textsForm, aboutHeritageYears: e.target.value})} 
+                                  placeholder="60+"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold font-mono" 
+                                />
                               </div>
-                            ) : (
-                              <div className="space-y-1">
-                                <div className="flex items-center gap-2 font-bold">
-                                  <AlertTriangle className="h-4 w-4 text-red-400 shrink-0" />
-                                  <span>Resultado do Teste:</span>
+                              <div className="sm:col-span-3">
+                                <label className="block text-neutral-400 font-mono mb-1">Título do Bloco</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.aboutHeritageTitle || ''} 
+                                  onChange={e => setTextsForm({...textsForm, aboutHeritageTitle: e.target.value})} 
+                                  placeholder="Tradição Fabril"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Descrição do Bloco</label>
+                              <textarea 
+                                rows={2}
+                                value={textsForm.aboutHeritageDesc || ''} 
+                                onChange={e => setTextsForm({...textsForm, aboutHeritageDesc: e.target.value})} 
+                                placeholder="Mais de 6 décadas fabricando com qualidade inegociável..."
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div className="p-4 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
+                            <span className="font-mono text-xs font-bold text-neutral-300 uppercase">Bloco 2: Parque Fabril Próprio</span>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Título do Bloco</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.aboutFactoryTitle || ''} 
+                                onChange={e => setTextsForm({...textsForm, aboutFactoryTitle: e.target.value})} 
+                                placeholder="Parque Fabril Próprio"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Descrição do Bloco</label>
+                              <textarea 
+                                rows={2}
+                                value={textsForm.aboutFactoryDesc || ''} 
+                                onChange={e => setTextsForm({...textsForm, aboutFactoryDesc: e.target.value})} 
+                                placeholder="Extrusoras de alta capacidade e matrizes exclusivas..."
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div className="p-4 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
+                            <span className="font-mono text-xs font-bold text-neutral-300 uppercase">Bloco 3: Engenharia &amp; Design</span>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Título do Bloco</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.aboutTechTitle || ''} 
+                                onChange={e => setTextsForm({...textsForm, aboutTechTitle: e.target.value})} 
+                                placeholder="Engenharia & Design"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Descrição do Bloco</label>
+                              <textarea 
+                                rows={2}
+                                value={textsForm.aboutTechDesc || ''} 
+                                onChange={e => setTextsForm({...textsForm, aboutTechDesc: e.target.value})} 
+                                placeholder="Soluções desenvolvidas sob medida para especificações de arquitetos..."
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Frase de Compromisso / Citação em Destaque</label>
+                            <textarea 
+                              rows={2}
+                              value={textsForm.aboutCommitmentQuote || ''} 
+                              onChange={e => setTextsForm({...textsForm, aboutCommitmentQuote: e.target.value})} 
+                              placeholder="Cada perfil Pasilux carrega décadas de compromisso com a exatidão milimétrica..."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 4. PRODUTOS & CATÁLOGO */}
+                    {(textsSubTab === 'all' || textsSubTab === 'products') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <Package className="h-4 w-4" />
+                            4. Seções de Produtos &amp; Catálogo Técnico
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Home e Página /produtos</span>
+                        </div>
+
+                        <div className="space-y-4 text-xs">
+                          <div className="p-4 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
+                            <span className="font-mono text-xs font-bold text-gold uppercase">Cabeçalho de Produtos na Página Inicial (Home)</span>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Badge da Seção</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.productsBadge || ''} 
+                                  onChange={e => setTextsForm({...textsForm, productsBadge: e.target.value})} 
+                                  placeholder="Linha de Produtos em Destaque"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Título Principal</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.productsTitle || ''} 
+                                  onChange={e => setTextsForm({...textsForm, productsTitle: e.target.value})} 
+                                  placeholder="Soluções em Perfis de Alumínio para LED"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Subtítulo da Seção</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.productsSubtitle || ''} 
+                                onChange={e => setTextsForm({...textsForm, productsSubtitle: e.target.value})} 
+                                placeholder="Perfis de embutir, sobrepor, no frame, rodapés e cantos..."
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Texto Botão "Ver Catálogo Completo"</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.productsCtaAll || ''} 
+                                onChange={e => setTextsForm({...textsForm, productsCtaAll: e.target.value})} 
+                                placeholder="Ver Catálogo Técnico Completo"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div className="p-4 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
+                            <span className="font-mono text-xs font-bold text-gold uppercase">Cabeçalho da Página de Catálogo (/produtos)</span>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Badge da Página</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.productsCatalogBadge || ''} 
+                                  onChange={e => setTextsForm({...textsForm, productsCatalogBadge: e.target.value})} 
+                                  placeholder="Página Oficial de Produtos Pasilux 2026"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Título da Página</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.productsCatalogTitle || ''} 
+                                  onChange={e => setTextsForm({...textsForm, productsCatalogTitle: e.target.value})} 
+                                  placeholder="Catálogo de Perfis de LED Industriais"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Subtítulo da Página</label>
+                              <textarea 
+                                rows={2}
+                                value={textsForm.productsCatalogSubtitle || ''} 
+                                onChange={e => setTextsForm({...textsForm, productsCatalogSubtitle: e.target.value})} 
+                                placeholder="Explore toda a linha de extrusão de alumínio..."
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 5. PROJETOS & PORTFÓLIO */}
+                    {(textsSubTab === 'all' || textsSubTab === 'projects') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <Layers className="h-4 w-4" />
+                            5. Seção de Projetos &amp; Obras Entregues
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Galeria de fotos e cases</span>
+                        </div>
+
+                        <div className="space-y-3.5 text-xs">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Badge da Seção</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.projectsBadge || ''} 
+                                onChange={e => setTextsForm({...textsForm, projectsBadge: e.target.value})} 
+                                placeholder="Portfólio & Obras Entregues"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Título da Seção</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.projectsTitle || ''} 
+                                onChange={e => setTextsForm({...textsForm, projectsTitle: e.target.value})} 
+                                placeholder="Projetos Realizados com Pasilux"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Subtítulo da Seção</label>
+                            <textarea 
+                              rows={2}
+                              value={textsForm.projectsSubtitle || ''} 
+                              onChange={e => setTextsForm({...textsForm, projectsSubtitle: e.target.value})} 
+                              placeholder="Inspirações de iluminação linear aplicada em residências de alto padrão..."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Texto Botão de Cotação no Modal</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.projectsCtaQuote || ''} 
+                              onChange={e => setTextsForm({...textsForm, projectsCtaQuote: e.target.value})} 
+                              placeholder="Cotar Projeto Similar"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 6. ORÇAMENTO SOB MEDIDA */}
+                    {(textsSubTab === 'all' || textsSubTab === 'budget') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <FileText className="h-4 w-4" />
+                            6. Seção Solicite um Orçamento Sob Medida
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Formulário técnico de cotação</span>
+                        </div>
+
+                        <div className="space-y-3.5 text-xs">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Badge da Seção</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.budgetBadge || ''} 
+                                onChange={e => setTextsForm({...textsForm, budgetBadge: e.target.value})} 
+                                placeholder="Cotação Direta de Fábrica"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Título da Seção</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.budgetTitle || ''} 
+                                onChange={e => setTextsForm({...textsForm, budgetTitle: e.target.value})} 
+                                placeholder="Solicite um Orçamento Sob Medida"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Subtítulo da Seção</label>
+                            <textarea 
+                              rows={2}
+                              value={textsForm.budgetSubtitle || ''} 
+                              onChange={e => setTextsForm({...textsForm, budgetSubtitle: e.target.value})} 
+                              placeholder="Envie as necessidades do seu projeto, medidas lineares ou anexe sua planta..."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Texto Botão de Envio</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.budgetSubmitButton || ''} 
+                              onChange={e => setTextsForm({...textsForm, budgetSubmitButton: e.target.value})} 
+                              placeholder="Solicitar Orçamento"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 7. BLOG & ARTIGOS */}
+                    {(textsSubTab === 'all' || textsSubTab === 'blog') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <BookOpen className="h-4 w-4" />
+                            7. Blog &amp; Artigos Técnicos
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Seção Home e Página /blog</span>
+                        </div>
+
+                        <div className="space-y-3.5 text-xs">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Badge do Blog</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.blogBadge || ''} 
+                                onChange={e => setTextsForm({...textsForm, blogBadge: e.target.value})} 
+                                placeholder="Informativos & Insights"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Título do Blog</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.blogTitle || ''} 
+                                onChange={e => setTextsForm({...textsForm, blogTitle: e.target.value})} 
+                                placeholder="Blog Pasilux"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Subtítulo do Blog</label>
+                            <textarea 
+                              rows={2}
+                              value={textsForm.blogSubtitle || ''} 
+                              onChange={e => setTextsForm({...textsForm, blogSubtitle: e.target.value})} 
+                              placeholder="Guias práticos, normas técnicas de iluminação linear..."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Texto Botão "Ver Todos os Artigos"</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.blogCtaViewAll || ''} 
+                              onChange={e => setTextsForm({...textsForm, blogCtaViewAll: e.target.value})} 
+                              placeholder="Ver Todos os Artigos Técnicos"
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 8. CONTATO, TELEFONES & WHATSAPP */}
+                    {(textsSubTab === 'all' || textsSubTab === 'contact') && (
+                      <div className="p-5 bg-neutral-900/80 border border-gold/30 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <MessageSquare className="h-4 w-4" />
+                            8. Central de Contato, Telefones &amp; WhatsApp Oficial
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Atendimento ao cliente e orçamentos</span>
+                        </div>
+
+                        <div className="space-y-4 text-xs">
+                          {/* Channels grid */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-neutral-300 font-mono mb-1 font-semibold">
+                                WhatsApp Formatado (Exibição Visual) *
+                              </label>
+                              <input 
+                                type="text" 
+                                value={textsForm.contactWhatsapp || ''} 
+                                onChange={e => {
+                                  const val = e.target.value;
+                                  const rawDigits = val.replace(/\D/g, '');
+                                  const rawFormatted = rawDigits.startsWith('55') ? rawDigits : `55${rawDigits}`;
+                                  setTextsForm({
+                                    ...textsForm, 
+                                    contactWhatsapp: val,
+                                    contactWhatsappRaw: rawFormatted
+                                  });
+                                }} 
+                                placeholder="(17) 99106-6398"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
+                              />
+                              <p className="text-[10px] text-neutral-400 mt-1">Exibido nos botões, cabeçalho e rodapé.</p>
+                            </div>
+
+                            <div>
+                              <label className="block text-neutral-300 font-mono mb-1 font-semibold">
+                                WhatsApp Numérico (Link wa.me com DDI) *
+                              </label>
+                              <input 
+                                type="text" 
+                                value={textsForm.contactWhatsappRaw || ''} 
+                                onChange={e => setTextsForm({...textsForm, contactWhatsappRaw: e.target.value})} 
+                                placeholder="5517991066398"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
+                              />
+                              <p className="text-[10px] text-neutral-400 mt-1">Código internacional + DDD + Número (ex: 5517991066398).</p>
+                            </div>
+
+                            <div>
+                              <label className="block text-neutral-300 font-mono mb-1 font-semibold">
+                                Telefone Fixo / Comercial
+                              </label>
+                              <input 
+                                type="text" 
+                                value={textsForm.contactPhone || ''} 
+                                onChange={e => setTextsForm({...textsForm, contactPhone: e.target.value})} 
+                                placeholder="(17) 99106-6398"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-neutral-300 font-mono mb-1 font-semibold">
+                                E-mail Corporativo de Atendimento *
+                              </label>
+                              <input 
+                                type="email" 
+                                value={textsForm.contactEmail || ''} 
+                                onChange={e => setTextsForm({...textsForm, contactEmail: e.target.value})} 
+                                placeholder="contato@pasilux.com.br"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold font-mono" 
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-neutral-300 font-mono mb-1 font-semibold">
+                                Endereço / Localização da Fábrica
+                              </label>
+                              <input 
+                                type="text" 
+                                value={textsForm.contactAddress || ''} 
+                                onChange={e => setTextsForm({...textsForm, contactAddress: e.target.value})} 
+                                placeholder="Catanduva, São Paulo, Brasil"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-neutral-300 font-mono mb-1 font-semibold">
+                                Horário de Atendimento
+                              </label>
+                              <input 
+                                type="text" 
+                                value={textsForm.contactHours || ''} 
+                                onChange={e => setTextsForm({...textsForm, contactHours: e.target.value})} 
+                                placeholder="Segunda a Sexta: 07:30 às 17:30"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          {/* Test link preview */}
+                          <div className="p-3 bg-neutral-950 rounded-xl border border-neutral-800 flex items-center justify-between text-xs">
+                            <span className="text-neutral-400 font-mono">
+                              Link direto WhatsApp ativo: <strong className="text-emerald-400">https://wa.me/{(textsForm.contactWhatsappRaw || '5517991066398').replace(/\D/g, '')}</strong>
+                            </span>
+                            <a
+                              href={`https://wa.me/${(textsForm.contactWhatsappRaw || '5517991066398').replace(/\D/g, '')}?text=Teste%20de%20contato%20Pasilux`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-mono text-[11px] font-bold flex items-center gap-1"
+                            >
+                              <ExternalLink className="h-3 w-3" /> Testar Link
+                            </a>
+                          </div>
+
+                          {/* Contact page titles & badges */}
+                          <div className="p-4 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
+                            <span className="font-mono text-xs font-bold text-neutral-300 uppercase">Textos da Seção &amp; Formulário de Contato</span>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Badge de Atendimento</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.contactBadge || ''} 
+                                  onChange={e => setTextsForm({...textsForm, contactBadge: e.target.value})} 
+                                  placeholder="Atendimento Pasilux"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Título da Seção</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.contactTitle || ''} 
+                                  onChange={e => setTextsForm({...textsForm, contactTitle: e.target.value})} 
+                                  placeholder="Fale com Nossos Consultores"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Descrição da Seção</label>
+                              <textarea 
+                                rows={2}
+                                value={textsForm.contactDescription || ''} 
+                                onChange={e => setTextsForm({...textsForm, contactDescription: e.target.value})} 
+                                placeholder="Estamos prontos para atender distribuidores, lojistas e arquitetos..."
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Título Bloco Canais Oficiais</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.contactFormTitle || ''} 
+                                  onChange={e => setTextsForm({...textsForm, contactFormTitle: e.target.value})} 
+                                  placeholder="Canais Oficiais de Contato"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Subtítulo Bloco Canais Oficiais</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.contactSubtitle || ''} 
+                                  onChange={e => setTextsForm({...textsForm, contactSubtitle: e.target.value})} 
+                                  placeholder="Escolha o melhor meio para interagir com a nossa fábrica:"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Texto Botão "Enviar Mensagem"</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.contactButtonText || ''} 
+                                  onChange={e => setTextsForm({...textsForm, contactButtonText: e.target.value})} 
+                                  placeholder="Enviar Mensagem"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-neutral-400 font-mono mb-1">Título Tela de Sucesso</label>
+                                <input 
+                                  type="text" 
+                                  value={textsForm.contactSuccessTitle || ''} 
+                                  onChange={e => setTextsForm({...textsForm, contactSuccessTitle: e.target.value})} 
+                                  placeholder="Mensagem Recebida com Sucesso!"
+                                  className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white focus:outline-none focus:border-gold" 
+                                />
+                              </div>
+                            </div>
+
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Descrição Detalhada Tela de Sucesso</label>
+                              <textarea 
+                                rows={2}
+                                value={textsForm.contactSuccessMessage || ''} 
+                                onChange={e => setTextsForm({...textsForm, contactSuccessMessage: e.target.value})} 
+                                placeholder="Agradecemos pelo contato. Nossa equipe técnica analisará sua mensagem..."
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 9. RODAPÉ / FOOTER */}
+                    {(textsSubTab === 'all' || textsSubTab === 'footer') && (
+                      <div className="p-5 bg-neutral-900/80 border border-neutral-800 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <h4 className="font-mono text-xs font-bold text-gold uppercase tracking-wider flex items-center gap-2">
+                            <Layout className="h-4 w-4" />
+                            9. Rodapé (Footer)
+                          </h4>
+                          <span className="text-[10px] font-mono text-neutral-400">Final da página</span>
+                        </div>
+
+                        <div className="space-y-3.5 text-xs">
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Slogan Institucional do Rodapé</label>
+                            <textarea 
+                              rows={2}
+                              value={textsForm.footerSlogan || ''} 
+                              onChange={e => setTextsForm({...textsForm, footerSlogan: e.target.value})} 
+                              placeholder="Indústria brasileira especializada em perfis de alumínio para iluminação linear..."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Aviso de Localização / Matriz</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.footerLocationNotice || ''} 
+                                onChange={e => setTextsForm({...textsForm, footerLocationNotice: e.target.value})} 
+                                placeholder="Fábrica e Matriz em Catanduva, SP • Atendimento Nacional"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-neutral-400 font-mono mb-1">Texto Botão "Voltar ao Topo"</label>
+                              <input 
+                                type="text" 
+                                value={textsForm.footerBackToTop || ''} 
+                                onChange={e => setTextsForm({...textsForm, footerBackToTop: e.target.value})} 
+                                placeholder="Voltar ao topo"
+                                className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                              />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-neutral-400 font-mono mb-1">Texto de Direitos Autorais / Copyright</label>
+                            <input 
+                              type="text" 
+                              value={textsForm.footerCopyright || ''} 
+                              onChange={e => setTextsForm({...textsForm, footerCopyright: e.target.value})} 
+                              placeholder="© 2026 Pasilux. Todos os direitos reservados."
+                              className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" 
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* 10. SMTP & AUTOMATIC EMAIL DISPATCH STATUS */}
+                    {(textsSubTab === 'all' || textsSubTab === 'smtp') && (
+                      <div className="p-5 bg-neutral-900/80 border border-sky-500/30 rounded-2xl space-y-4">
+                        <div className="flex items-center justify-between pb-2 border-b border-neutral-800">
+                          <div className="flex items-center gap-2">
+                            <Mail className="h-4 w-4 text-sky-400" />
+                            <h4 className="font-mono text-xs font-bold text-sky-400 uppercase tracking-wider">
+                              10. Envio Automático de E-mails (SMTP &amp; Notificações)
+                            </h4>
+                          </div>
+                          {emailStatus?.configured ? (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                              <CheckCircle className="h-3 w-3" /> SMTP Ativo
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                              <AlertTriangle className="h-3 w-3" /> Variáveis Pendentes no .env
+                            </span>
+                          )}
+                        </div>
+
+                        <p className="text-xs text-neutral-300 leading-relaxed">
+                          Quando um cliente envia um formulário de <strong className="text-white">Contato</strong> ou solicitação de <strong className="text-white">Orçamento Sob Medida</strong>, o sistema salva o registro no banco de dados e dispara automaticamente um e-mail com todos os dados preenchidos, plantas em anexo e links diretos para resposta.
+                        </p>
+
+                        {/* Status Grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                          <div className="p-3 bg-neutral-950 rounded-xl border border-neutral-800 space-y-1">
+                            <span className="text-[10px] font-mono text-neutral-500 uppercase">Servidor SMTP Atual:</span>
+                            <p className="font-mono font-bold text-white">{emailStatus?.host || 'smtp.gmail.com'}</p>
+                          </div>
+                          <div className="p-3 bg-neutral-950 rounded-xl border border-neutral-800 space-y-1">
+                            <span className="text-[10px] font-mono text-neutral-500 uppercase">Destinatário dos Formulários (EMAIL_TO):</span>
+                            <p className="font-mono font-bold text-gold">{emailStatus?.recipient || textsForm.contactEmail || 'contato@pasilux.com.br'}</p>
+                          </div>
+                        </div>
+
+                        {/* Guide of Environment Variables */}
+                        <div className="p-3.5 bg-neutral-950/70 rounded-xl border border-neutral-800 text-[11px] font-mono space-y-2">
+                          <div className="flex items-center justify-between text-neutral-400 font-bold uppercase text-[10px]">
+                            <span>Variáveis de Ambiente (.env)</span>
+                            <span className="text-sky-400">Configuração de Produção</span>
+                          </div>
+                          <div className="text-neutral-300 space-y-1 text-[10px] leading-relaxed">
+                            <div><code className="text-gold font-bold">SMTP_HOST</code>: Host do servidor (ex: <em>smtp.gmail.com</em>, <em>smtp.hostinger.com</em>, <em>smtp.resend.com</em>)</div>
+                            <div><code className="text-gold font-bold">SMTP_PORT</code>: Porta de envio (ex: <em>587</em> para TLS ou <em>465</em> para SSL)</div>
+                            <div><code className="text-gold font-bold">SMTP_USER</code>: Usuário ou e-mail de autenticação</div>
+                            <div><code className="text-gold font-bold">SMTP_PASS</code>: Senha ou App Password do provedor de e-mail</div>
+                            <div><code className="text-gold font-bold">EMAIL_TO</code>: E-mail que receberá as mensagens (ex: <em>{textsForm.contactEmail || 'contato@pasilux.com.br'}</em>)</div>
+                          </div>
+                        </div>
+
+                        {/* Interactive Test Tool */}
+                        <div className="p-3.5 bg-neutral-950 rounded-xl border border-neutral-800 space-y-3">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-bold text-neutral-200 flex items-center gap-1.5 font-mono">
+                              <Sparkles className="h-3.5 w-3.5 text-gold" />
+                              Testar Envio de E-mail de Notificação
+                            </label>
+                            <span className="text-[10px] text-neutral-400">Verifique a conexão SMTP</span>
+                          </div>
+
+                          <div className="flex flex-col sm:flex-row gap-2">
+                            <input
+                              type="email"
+                              value={testEmailRecipient}
+                              onChange={e => setTestEmailRecipient(e.target.value)}
+                              placeholder="seu-email@exemplo.com"
+                              className="flex-1 p-2.5 border border-neutral-700 rounded-xl bg-neutral-900 text-white text-xs font-mono focus:outline-none focus:border-sky-400"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleSendTestEmail}
+                              disabled={testEmailLoading}
+                              className="px-4 py-2.5 bg-sky-600 hover:bg-sky-500 disabled:bg-neutral-800 text-white font-bold rounded-xl text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all shrink-0"
+                            >
+                              {testEmailLoading ? (
+                                <>
+                                  <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                                  Enviando...
+                                </>
+                              ) : (
+                                <>
+                                  <Mail className="h-3.5 w-3.5" />
+                                  Enviar E-mail de Teste
+                                </>
+                              )}
+                            </button>
+                          </div>
+
+                          {testEmailResult && (
+                            <div className={`p-3 rounded-xl border text-xs leading-relaxed ${testEmailResult.success ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' : 'bg-red-500/10 border-red-500/30 text-red-300'}`}>
+                              {testEmailResult.success ? (
+                                <div className="flex items-center gap-2">
+                                  <Check className="h-4 w-4 text-emerald-400 shrink-0" />
+                                  <span>{testEmailResult.message || 'E-mail de teste disparado com sucesso! Verifique sua caixa de entrada.'}</span>
                                 </div>
-                                <p className="font-mono text-[11px] text-red-200">{testEmailResult.error}</p>
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                    
-                    {/* SECTION 3: HERO & LANDING PAGE TEXTS */}
-                    <div className="p-5 bg-neutral-900/60 border border-neutral-800 rounded-2xl space-y-4">
-                      <h4 className="font-mono text-xs font-bold text-neutral-400 uppercase tracking-wider flex items-center gap-2 pb-2 border-b border-neutral-800">
-                        <Sparkles className="h-4 w-4 text-gold" />
-                        2. Textos do Hero (Topo da Página)
-                      </h4>
-
-                      <div className="space-y-3.5 text-xs">
-                        <div>
-                          <label className="block text-neutral-400 font-mono mb-1">Tagline Superior do Hero</label>
-                          <input type="text" value={textsForm.heroTagline} onChange={e => setTextsForm({...textsForm, heroTagline: e.target.value})} className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" />
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-neutral-400 font-mono mb-1">Título Hero (Linha 1)</label>
-                            <input type="text" value={textsForm.heroTitle1} onChange={e => setTextsForm({...textsForm, heroTitle1: e.target.value})} className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" />
-                          </div>
-                          <div>
-                            <label className="block text-neutral-400 font-mono mb-1">Título Hero (Linha 2)</label>
-                            <input type="text" value={textsForm.heroTitle2} onChange={e => setTextsForm({...textsForm, heroTitle2: e.target.value})} className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" />
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-neutral-400 font-mono mb-1">Descrição do Hero</label>
-                          <textarea rows={3} value={textsForm.heroDescription} onChange={e => setTextsForm({...textsForm, heroDescription: e.target.value})} className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white resize-none leading-relaxed focus:outline-none focus:border-gold" />
+                              ) : (
+                                <div className="space-y-1">
+                                  <div className="flex items-center gap-2 font-bold">
+                                    <AlertTriangle className="h-4 w-4 text-red-400 shrink-0" />
+                                    <span>Resultado do Teste:</span>
+                                  </div>
+                                  <p className="font-mono text-[11px] text-red-200">{testEmailResult.error}</p>
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
+                    )}
 
-                    {/* SECTION 3: ABOUT / INSTITUCIONAL */}
-                    <div className="p-5 bg-neutral-900/60 border border-neutral-800 rounded-2xl space-y-4">
-                      <h4 className="font-mono text-xs font-bold text-neutral-400 uppercase tracking-wider flex items-center gap-2 pb-2 border-b border-neutral-800">
-                        <Building className="h-4 w-4 text-gold" />
-                        3. Seção Quem Somos / Institucional
-                      </h4>
-
-                      <div className="space-y-3.5 text-xs">
-                        <div>
-                          <label className="block text-neutral-400 font-mono mb-1">Título Seção Quem Somos</label>
-                          <input type="text" value={textsForm.aboutTitle} onChange={e => setTextsForm({...textsForm, aboutTitle: e.target.value})} className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" />
-                        </div>
-                        <div>
-                          <label className="block text-neutral-400 font-mono mb-1">Subtítulo Quem Somos</label>
-                          <input type="text" value={textsForm.aboutSubtitle || ''} onChange={e => setTextsForm({...textsForm, aboutSubtitle: e.target.value})} className="w-full p-2.5 border border-neutral-700 rounded-xl bg-neutral-950 text-white focus:outline-none focus:border-gold" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-2 flex items-center justify-end gap-3">
-                      <button type="submit" className="px-6 py-3 bg-gold hover:bg-gold-light text-neutral-950 font-bold rounded-xl text-xs uppercase tracking-wider cursor-pointer flex items-center gap-2 shadow-lg shadow-gold/20 transition-all hover:scale-[1.01]">
-                        <Save className="h-4 w-4" /> Salvar Todos os Textos e Contatos
+                    <div className="pt-2 sticky bottom-0 bg-[#0a0b0e]/95 backdrop-blur py-3 flex items-center justify-between gap-3 border-t border-neutral-800 z-10">
+                      <span className="text-xs text-neutral-400 font-mono">
+                        Todas as alterações são salvas diretamente no banco de dados e refletem em tempo real no site.
+                      </span>
+                      <button type="submit" className="px-6 py-3 bg-gold hover:bg-gold-light text-neutral-950 font-bold rounded-xl text-xs uppercase tracking-wider cursor-pointer flex items-center gap-2 shadow-lg shadow-gold/20 transition-all hover:scale-[1.01] shrink-0">
+                        <Save className="h-4 w-4" /> Salvar Todos os Textos
                       </button>
                     </div>
                   </form>

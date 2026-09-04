@@ -20,6 +20,7 @@ import {
   Link as LinkIcon
 } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useData } from '../context/DataContext';
 
 interface BlogPageProps {
   initialSlug?: string | null;
@@ -28,6 +29,7 @@ interface BlogPageProps {
 }
 
 export default function BlogPage({ initialSlug, onNavigateHome, onNavigateToCatalog }: BlogPageProps) {
+  const { siteTexts } = useData();
   const [selectedSlug, setSelectedSlug] = useState<string | null>(initialSlug || null);
   const [copied, setCopied] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
@@ -329,12 +331,12 @@ export default function BlogPage({ initialSlug, onNavigateHome, onNavigateToCata
           
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="font-mono text-xs text-gold-dark uppercase tracking-widest font-bold">Informativos &amp; Engenharia</span>
+            <span className="font-mono text-xs text-gold-dark uppercase tracking-widest font-bold">{siteTexts.blogBadge || 'Informativos & Engenharia'}</span>
             <h1 className="font-serif text-3xl sm:text-5xl font-light text-neutral-950 tracking-tight mt-2 mb-4">
-              Blog &amp; Insights <span className="font-normal italic text-gold-dark">Pasilux</span>
+              {siteTexts.blogTitle || 'Blog & Insights Pasilux'}
             </h1>
             <p className="font-sans text-neutral-600 text-base md:text-lg font-light leading-relaxed">
-              Guias técnicos, inovações em iluminação linear, soluções sustentáveis e especificações para arquitetura e iluminação.
+              {siteTexts.blogSubtitle || 'Guias técnicos, inovações em iluminação linear, soluções sustentáveis e especificações para arquitetura e iluminação.'}
             </p>
           </div>
 

@@ -37,12 +37,13 @@ export default function Navbar({
   }, []);
 
   const menuItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'quemsomos', label: 'Quem Somos' },
-    { id: 'produtos', label: 'Produtos' },
-    { id: 'projetos', label: 'Projetos' },
-    { id: 'blog', label: 'Blog' },
-    { id: 'contato', label: 'Contato' },
+    { id: 'home', label: siteTexts.navLinkHome || 'Home' },
+    { id: 'quemsomos', label: siteTexts.navLinkAbout || 'Quem Somos' },
+    { id: 'revenda', label: 'Revenda' },
+    { id: 'produtos', label: siteTexts.navLinkProducts || 'Produtos' },
+    { id: 'projetos', label: siteTexts.navLinkProjects || 'Projetos' },
+    { id: 'blog', label: siteTexts.navLinkBlog || 'Blog' },
+    { id: 'contato', label: siteTexts.navLinkContact || 'Contato' },
   ];
 
   const handleNavClick = (id: string) => {
@@ -211,20 +212,20 @@ export default function Navbar({
               title="Download do Catálogo Técnico PDF"
             >
               <FileDown className="h-3.5 w-3.5 text-gold-dark" />
-              <span>Catálogo PDF</span>
+              <span>{siteTexts.catalogModalButtonText || 'Catálogo PDF'}</span>
             </button>
           )}
 
           {/* Quick WhatsApp button */}
           <a
-            href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent('Olá! Gostaria de falar com um consultor da Pasilux.')}`}
+            href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(siteTexts.heroWhatsappMessage || 'Olá! Gostaria de falar com um consultor da Pasilux.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 rounded-full text-xs font-bold tracking-wide transition-all shadow-xs"
             id="nav-whatsapp-btn"
           >
             <MessageSquare className="h-3.5 w-3.5 text-emerald-600" />
-            <span>WhatsApp</span>
+            <span>{siteTexts.navWhatsappText || 'WhatsApp'}</span>
           </a>
 
           <button
@@ -233,7 +234,7 @@ export default function Navbar({
             id="nav-project-btn"
           >
             <Compass className="h-3.5 w-3.5" />
-            Solicitar Orçamento
+            {siteTexts.navCtaButton || 'Solicitar Orçamento'}
           </button>
         </div>
 
@@ -308,19 +309,19 @@ export default function Navbar({
               className="flex items-center justify-center gap-2 w-full py-3 bg-neutral-100 border border-neutral-300 text-neutral-900 rounded-xl text-sm font-bold tracking-wide uppercase transition-all shadow-xs cursor-pointer"
             >
               <FileDown className="h-4 w-4 text-gold-dark" />
-              Download Catálogo Técnico PDF
+              {siteTexts.catalogModalButtonText || 'Download Catálogo Técnico PDF'}
             </button>
           )}
 
           <a
-            href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent('Olá! Gostaria de falar com um consultor da Pasilux.')}`}
+            href={`https://wa.me/${cleanWhatsapp}?text=${encodeURIComponent(siteTexts.heroWhatsappMessage || 'Olá! Gostaria de falar com um consultor da Pasilux.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full py-3 bg-emerald-600 text-white rounded-xl text-sm font-bold tracking-wide uppercase transition-all shadow-sm cursor-pointer"
             id="mobile-nav-whatsapp-direct-btn"
           >
             <MessageSquare className="h-4 w-4" />
-            Falar no WhatsApp: {siteTexts.contactWhatsapp || '(17) 99106-6398'}
+            {siteTexts.navWhatsappText || 'Falar no WhatsApp'}: {siteTexts.contactWhatsapp || '(17) 99106-6398'}
           </a>
 
           <button
@@ -329,7 +330,7 @@ export default function Navbar({
             id="mobile-nav-project-btn"
           >
             <Compass className="h-4 w-4" />
-            Solicitar Orçamento
+            {siteTexts.navCtaButton || 'Solicitar Orçamento'}
           </button>
         </div>
       </div>

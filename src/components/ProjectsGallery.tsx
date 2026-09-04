@@ -13,6 +13,7 @@ import {
   Layers
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useData } from '../context/DataContext';
 
 interface ProjectsGalleryProps {
   onSelectProjectForQuote?: (project: ProjectPortfolioItem) => void;
@@ -20,6 +21,7 @@ interface ProjectsGalleryProps {
 }
 
 export default function ProjectsGallery({ onSelectProjectForQuote, onNavigateToCatalog }: ProjectsGalleryProps) {
+  const { siteTexts } = useData();
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [activeProjectModal, setActiveProjectModal] = useState<ProjectPortfolioItem | null>(null);
 
@@ -63,13 +65,13 @@ export default function ProjectsGallery({ onSelectProjectForQuote, onNavigateToC
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 text-gold-dark text-xs font-mono font-bold tracking-wider uppercase mb-3">
               <Building2 className="h-3.5 w-3.5" />
-              <span>Portfólio &amp; Obras Entregues</span>
+              <span>{siteTexts.projectsBadge || 'Portfólio & Obras Entregues'}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-neutral-950 tracking-tight">
-              Projetos Realizados com <span className="font-normal italic text-gold-dark">Pasilux</span>
+              {siteTexts.projectsTitle || 'Projetos Realizados com Pasilux'}
             </h2>
             <p className="font-sans text-neutral-600 text-sm md:text-base font-light mt-3 max-w-2xl leading-relaxed">
-              Inspire-se com obras de arquitetura residencial, corporativa e marcenaria fina de alto padrão especificadas com nossos perfis de alumínio e tecnologia LED.
+              {siteTexts.projectsSubtitle || 'Inspire-se com obras de arquitetura residencial, corporativa e marcenaria fina de alto padrão especificadas com nossos perfis de alumínio e tecnologia LED.'}
             </p>
           </div>
 
@@ -289,7 +291,7 @@ export default function ProjectsGallery({ onSelectProjectForQuote, onNavigateToC
                         className="w-full py-3 bg-neutral-950 hover:bg-neutral-800 text-gold font-bold rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
                       >
                         <Compass className="h-4 w-4" />
-                        <span>Cotar Projeto Similar</span>
+                        <span>{siteTexts.projectsCtaQuote || 'Cotar Projeto Similar'}</span>
                       </a>
                     </div>
 

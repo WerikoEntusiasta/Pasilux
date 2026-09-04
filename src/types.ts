@@ -126,13 +126,102 @@ export interface Budget {
 }
 
 export interface SiteTexts {
+  // Navigation
+  navBrandSubtitle?: string;
+  navLinkHome?: string;
+  navLinkAbout?: string;
+  navLinkProducts?: string;
+  navLinkProjects?: string;
+  navLinkBlog?: string;
+  navLinkContact?: string;
+  navCtaButton?: string;
+  navWhatsappText?: string;
+
+  // Hero Section
   heroTagline: string;
   heroTitle1: string;
   heroTitle2: string;
   heroDescription: string;
+  heroExploreBtn?: string;
+  heroWhatsappBtn?: string;
+  heroWhatsappMessage?: string;
+  heroScrollText?: string;
+
+  // About Section (Quem Somos)
+  aboutBadge?: string;
   aboutTitle: string;
+  aboutSubtitle?: string;
   aboutTab1Label: string;
   aboutTab2Label: string;
+  about60Badge?: string;
+  about60Title?: string;
+  about60P1?: string;
+  about60P2?: string;
+  about60P3?: string;
+  aboutCard1Title?: string;
+  aboutCard1Desc?: string;
+  aboutCard2Title?: string;
+  aboutCard2Desc?: string;
+  aboutCard3Title?: string;
+  aboutCard3Desc?: string;
+  about20Badge?: string;
+  about20Title?: string;
+  about20P1?: string;
+  about20P2?: string;
+  about20P3?: string;
+  about20StatNumber?: string;
+  about20StatTitle?: string;
+  about20StatDesc?: string;
+
+  // Products Section
+  productsBadge?: string;
+  productsTitle?: string;
+  productsSubtitle?: string;
+  productsCtaCatalog?: string;
+  productsCatalogBadge?: string;
+  productsCatalogTitle?: string;
+  productsCatalogSubtitle?: string;
+
+  // Projects Section
+  projectsBadge?: string;
+  projectsTitle?: string;
+  projectsSubtitle?: string;
+  projectsCtaQuote?: string;
+
+  // Budget Section
+  budgetBadge?: string;
+  budgetTitle?: string;
+  budgetSubtitle?: string;
+  budgetFormTitle?: string;
+  budgetButtonText?: string;
+  budgetSuccessTitle?: string;
+  budgetSuccessMessage?: string;
+  budgetHowItWorksTitle?: string;
+  budgetStep1?: string;
+  budgetStep2?: string;
+  budgetStep3?: string;
+  budgetProNoticeTitle?: string;
+  budgetProNoticeDesc?: string;
+  budgetSpecialMeasuresNotice?: string;
+
+  // Blog Section
+  blogBadge?: string;
+  blogTitle?: string;
+  blogSubtitle?: string;
+  blogCtaViewAll?: string;
+  blogPageTitle?: string;
+  blogPageSubtitle?: string;
+
+  // Catalog PDF Modal
+  catalogModalBadge?: string;
+  catalogModalTitle?: string;
+  catalogModalSubtitle?: string;
+  catalogModalButtonText?: string;
+
+  // Contact Section
+  contactBadge?: string;
+  contactTitle?: string;
+  contactDescription?: string;
   contactPhone: string;
   contactWhatsapp: string;
   contactWhatsappRaw: string;
@@ -140,4 +229,17 @@ export interface SiteTexts {
   contactAddress: string;
   contactHours: string;
   contactSubtitle: string;
+  contactFormTitle?: string;
+  contactButtonText?: string;
+  contactSuccessTitle?: string;
+  contactSuccessMessage?: string;
+
+  // Footer
+  footerSlogan?: string;
+  footerLocationNotice?: string;
+  footerCopyright?: string;
+  footerBackToTop?: string;
+
+  // Dynamic texts index signature
+  [key: string]: string | undefined;
 }
