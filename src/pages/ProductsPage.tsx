@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import { LEDProfile } from '../types';
+import { useSEO } from '../utils/seo';
 
 interface ProductsPageProps {
   onNavigateHome: () => void;
@@ -40,6 +41,15 @@ export default function ProductsPage({
   initialProfileCode 
 }: ProductsPageProps) {
   const { profiles, categories: dataCategories } = useData();
+
+  // Dynamic SEO for Products Catalog
+  useSEO({
+    title: 'Catálogo de Perfis de LED e Alumínio de Alta Precisão',
+    description: 'Consulte as especificações técnicas completas dos 34 perfis de LED Pasilux: movelaria, embutir em gesso, sobrepor, pendente, no frame borda infinita e ripados.',
+    canonicalPath: '/produtos',
+    ogType: 'website',
+    ogImage: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop'
+  });
 
   // Search and Filter States
   const [searchTerm, setSearchTerm] = useState<string>('');

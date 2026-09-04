@@ -1,0 +1,71 @@
+# ==============================================================================
+# Robots.txt — Pasilux Perfis de LED e Alumínio de Alta Precisão
+# Matriz: Catanduva - SP | https://pasilux.com.br
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Allow: /produtos
+Allow: /produtos/
+Allow: /blog
+Allow: /blog/
+Allow: /uploads/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /agent.txt
+
+# Bloqueio de áreas administrativas e internas
+Disallow: /admin
+Disallow: /admin/
+Disallow: /adminpanelacessrestrito
+Disallow: /api/
+
+# Permissão explícita para os principais motores de busca
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Permissão para Rastreadores de Inteligência Artificial e LLMs
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Localização do Sitemap e Documentações para LLM
+Sitemap: https://pasilux.com.br/sitemap.xml

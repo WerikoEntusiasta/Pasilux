@@ -1,0 +1,83 @@
+# Pasilux — Documentação Completa e Base de Conhecimento para LLMs
+
+> Este arquivo reúne o portfólio completo de 34 perfis de LED de alta precisão, artigos luminotécnicos na íntegra, especificações metalúrgicas e diretrizes de especificação da Pasilux (Catanduva - SP).
+
+---
+
+## 1. Sobre a Pasilux
+- Razão Social / Marca: Pasilux Perfis de LED e Alumínio
+- Origem Metalúrgica: Grupo metalúrgico familiar com mais de 60 anos de atividade ininterrupta.
+- Especialização em Extrusão: 20+ anos de know-how em moldagem e extrusão de ligas técnicas de alumínio.
+- Matriz e Parque Fabril: Catanduva - SP, Brasil.
+- Atendimento Comercial e Engenharia de Aplicação: WhatsApp (17) 99106-6398 | contato@pasilux.com.br
+- Website: https://pasilux.com.br
+
+---
+
+## 2. Tabela Completa de Perfis de Linha (34 Modelos Técnicos)
+
+| Código | Linha / Categoria | Dimensões (LxA mm) | Fita Suportada | Difusor | Fita COB Indicada | Acabamentos Disponíveis |
+|---|---|---|---|---|---|---|
+| PSL0001 | Movelaria Sobrepor | 8x9mm | 8mm | Policarbonato Fosco | Sim | Preto, Branco, Alumínio Natural |
+| PSL0002 | Sobrepor Funcional | 12x12mm | 10mm | Policarbonato Opalino | Sim | Preto, Branco, Alumínio Natural |
+| PSL0003 | Movelaria Sobrepor | 17x14mm | 10mm | Acrílico PMMA | Sim | Preto, Branco, Alumínio Natural |
+| PSL0004 | Sobrepor Médio | 24x14mm | 12mm | PMMA Leitoso | Sim | Preto, Branco, Alumínio Natural |
+| PSL0005 | Sobrepor Robusto | 30x20mm | 15mm | PMMA Leitoso | Sim | Preto, Branco, Alumínio Natural |
+| PSL0007 | Sobrepor Slim | 15x6mm | 10mm | Policarbonato Fosco | Sim | Preto, Branco, Alumínio Natural |
+| PSL0008 | Sobrepor Angular 45° | 19x19mm | 10mm | Policarbonato Curvo | Sim | Preto, Branco, Alumínio Natural |
+| PSL0009 | Sobrepor Angular 45° | 30x30mm | 15mm | Policarbonato Curvo | Sim | Preto, Branco, Alumínio Natural |
+| PSL0010 | Sobrepor Piso / Rodapé | 28x10mm | 10mm | Policarbonato Alto Impacto | Sim | Preto, Branco, Alumínio Natural |
+| PSL0011 | Pendente / Sobrepor | 50x50mm | 20mm | PMMA Difuso UGR<19 | Sim | Preto, Branco, Alumínio Natural |
+| PSL0012 | Pendente Corporativo | 35x35mm | 15mm | PMMA Leitoso | Sim | Preto, Branco, Alumínio Natural |
+| PSL0013 | Pendente Linear | 35x70mm | 20mm | PMMA Dupla Difusão | Sim | Preto, Branco, Alumínio Natural |
+| PSL0014 | Pendente Up & Down | 50x75mm | 2x 15mm | Direto e Indireto | Sim | Preto, Branco, Alumínio Natural |
+| PSL0015 | Pendente Tubular Circular | Ø60mm | 15mm | Difusor 360° | Não | Preto, Branco, Alumínio Natural |
+| PSL0016 | Especial Ripado Indireto | 145x22mm | 12mm | Policarbonato Indireto | Não | Preto, Branco, Linheiro, Jequitibá |
+| PSL0017 | Especial Ripado Direto | 145x22mm | 12mm | PMMA Leitoso Frontal | Não | Preto, Branco, Linheiro, Jequitibá |
+| PSL0018 | Movelaria Embutir | 9x13mm | 8mm | Acrílico PMMA | Sim | Preto, Branco, Alumínio Natural |
+| PSL0019 | Assimétrico Wall Washer | 10x30mm | 10mm | Lente Assimétrica 30° | Sim | Preto, Branco, Alumínio Natural |
+| PSL0020 | Movelaria Embutir Slim | 24x7mm | 10mm | Policarbonato Opalino | Sim | Preto, Branco, Alumínio Natural |
+| PSL0021 | Movelaria Embutir | 24x14mm | 12mm | Acrílico No-Dot | Sim | Preto, Branco, Alumínio Natural |
+| PSL0022 | Embutir com Aba Gesso | 24x14mm | 12mm | PMMA Leitoso | Sim | Preto, Branco, Alumínio Natural |
+| PSL0023 | Embutir com Aba Gesso | 35x35mm | 15mm | PMMA Leitoso | Sim | Preto, Branco, Alumínio Natural |
+| PSL0024 | Embutir com Aba Médio | 40x20mm | 15mm | PMMA Leitoso | Sim | Preto, Branco, Alumínio Natural |
+| PSL0025 | Embutir com Aba Largo | 50x35mm | 25mm | PMMA Leitoso | Sim | Preto, Branco, Alumínio Natural |
+| PSL0026 | Embutir com Aba Fundo Falso | 50x50mm | 20mm | PMMA Recuado Anti-ofuscante | Sim | Preto, Branco, Alumínio Natural |
+| PSL0027 | Embutir com Aba Master | 75x35mm | 30mm | PMMA Leitoso Duplo | Sim | Preto, Branco, Alumínio Natural |
+| PSL0028 | Embutir com Aba Monumental | 100x50mm | 40mm | PMMA Opalino 3mm | Sim | Preto, Branco, Alumínio Natural |
+| PSL0029 | Embutir para Degrau de Escada | 65x28mm | 10mm | Policarbonato Antiderrapante | Sim | Preto, Alumínio Anodizado |
+| PSL0030 | Embutir para Piso / Deck | 26x18mm | 10mm | Policarbonato IP67 Resistente | Sim | Alumínio Natural Anodizado |
+| PSL0031 | No Frame Borda Infinita Slim | 35x25mm | 12mm | PMMA Nivelado | Sim | Alumínio Bruto para Acabamento |
+| PSL0032 | No Frame Borda Infinita Médio | 55x35mm | 15mm | PMMA Nivelado | Sim | Alumínio Bruto para Acabamento |
+| PSL0033 | No Frame Borda Infinita Largo | 91x60mm | 25mm | PMMA Nivelado | Sim | Alumínio Bruto para Acabamento |
+| PSL0034 | No Frame Canto Interno 90° | 40x40mm | 12mm | PMMA Angular | Sim | Alumínio Bruto para Acabamento |
+| PSL0035 | No Frame Rasgo Monumental | 115x42mm | 35mm | PMMA Difusão Contínua | Sim | Alumínio Bruto para Acabamento |
+
+---
+
+## 3. Artigos na Íntegra
+
+### Artigo 1: A Iluminação em LED: Uma Revolução Luminosa para o Futuro
+- URL: https://pasilux.com.br/blog/iluminacao-led-revolucao-luminosa
+- Categoria: Sustentabilidade & Tecnologia
+- Conteúdo:
+A iluminação desempenha um papel fundamental em nossas vidas diárias. Não apenas torna os ambientes mais agradáveis e acolhedores, mas também desempenha um papel crucial na eficiência energética e na redução dos impactos ambientais. À medida que a tecnologia evolui, uma das maiores revoluções na indústria da iluminação é a adoção em larga escala da iluminação em LED (Light Emitting Diode).
+1. Eficiência Energética Superior: Os perfis de alumínio com dissipação técnica otimizada permitem que as fitas de LED operem em temperaturas seguras, prolongando sua vida útil para além de 50.000 horas e reduzindo o consumo elétrico em até 80% comparado a sistemas tradicionais halógenos ou fluorescentes.
+2. Integração Arquitetônica Total (No Frame & Embutir): Com as linhas No Frame e de embutir ultra-slim, a luz passa a fazer parte da estrutura do imóvel. Não existem mais luminárias pesadas poluindo o campo visual: a arquitetura é realçada por rasgos e linhas contínuas de luz homogênea e sem pontos aparentes (No-Dot).
+3. Conforto Visual e Reprodução de Cor (IRC > 90): A tecnologia COB (Chip on Board) combinada com os difusores em acrílico leitoso PMMA e policarbonato anti-UV da Pasilux proporciona um índice de reprodução de cor elevado, valorizando texturas de pedras naturais, madeiras e tecidos em projetos de alto padrão.
+
+### Artigo 2: A Economia Gerada pela Iluminação de LED em Projetos Comerciais e Residenciais
+- URL: https://pasilux.com.br/blog/economia-gerada-pela-iluminacao-led
+- Categoria: Economia & Planejamento
+- Conteúdo:
+Na busca por soluções que promovam uma economia mais eficiente e sustentável, a iluminação em LED destaca-se como o investimento de retorno mais rápido na construção civil. Além de oferecer iluminação de alta qualidade, os perfis em alumínio extrudado proporcionam economia direta na manutenção e na conta de energia.
+1. Durabilidade e Redução de Manutenção: Substituir lâmpadas em pés-direitos duplos ou sancas requer andaimes e mão de obra especializada. Ao especificar perfis de alumínio Pasilux com correta dissipação térmica, a vida útil do sistema é estendida, reduzindo drasticamente custos de manutenção predial.
+2. Baixa Emissão de Calor: Diferente de lâmpadas antigas que convertiam a maior parte da energia em calor, o LED gera iluminação fria. Isso alivia a carga térmica dos ambientes, resultando em menor esforço dos sistemas de ar-condicionado e menor consumo global de eletricidade.
+
+### Artigo 3: Iluminação em LED: Um Passo Sustentável em Direção ao Futuro da Construção
+- URL: https://pasilux.com.br/blog/iluminacao-led-passo-sustentavel
+- Categoria: Design Sustentável
+- Conteúdo:
+Em um mundo onde a sustentabilidade é cada vez mais crucial, a escolha da iluminação certa desempenha um papel significativo na redução do impacto ambiental e na eficiência de recursos naturais, contribuindo diretamente para pontuações em certificações como LEED e AQUA.
+1. Reciclabilidade do Alumínio: A liga de alumínio de alta pureza utilizada na extrusão dos perfis Pasilux é 100% reciclável sem perda de propriedades mecânicas, alinhando-se aos princípios da economia circular na indústria da construção.
+2. Ausência de Metais Pesados: Os sistemas em LED não contêm mercúrio nem emitem radiação ultravioleta ou infravermelha, tornando os ambientes mais saudáveis e facilitando o descarte consciente ao término do ciclo de vida.

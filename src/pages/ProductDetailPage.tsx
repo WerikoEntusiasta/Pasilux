@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { useData } from '../context/DataContext';
 import { LEDProfile } from '../types';
+import { useSEO } from '../utils/seo';
 
 interface ProductDetailPageProps {
   profileCode: string;
@@ -49,6 +50,37 @@ export default function ProductDetailPage({
 
   // Find the target product by code or fallback to first
   const product: LEDProfile | undefined = profiles.find(p => p.code.toLowerCase() === profileCode.toLowerCase()) || profiles[0];
+
+  // Dynamic SEO for individual product page
+  useSEO({
+    title: product ? `${product.name} (${product.code})` : 'Perfil de LED',
+    description: product 
+      ? `${product.description} Dimensões: ${product.width}x${product.height}mm. Difusor: ${product.diffuser}. Fabricado em Catanduva - SP pela Pasilux.`
+      : 'Perfil de LED em alumínio extrudado de alta precisão Pasilux.',
+    canonicalPath: product ? `/produtos/${product.code.toLowerCase()}` : '/produtos',
+    ogType: 'product',
+    ogImage: product?.image,
+    jsonLd: product ? {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      'name': product.name,
+      'sku': product.code,
+      'mpn': product.code,
+      'image': [product.image],
+      'description': product.description,
+      'brand': {
+        '@type': 'Brand',
+        'name': 'Pasilux'
+      },
+      'category': product.category,
+      'material': 'Alumínio de Alta Pureza',
+      'manufacturer': {
+        '@type': 'Organization',
+        'name': 'Pasilux Perfis de LED',
+        'url': 'https://pasilux.com.br'
+      }
+    } : undefined
+  });
 
   // Gallery state
   const galleryImages = [

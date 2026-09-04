@@ -1,0 +1,8 @@
+# AI.txt — Pasilux
+# Informações para rastreadores de inteligência artificial
+User-agent: *
+Allow: /
+Sitemap: https://pasilux.com.br/sitemap.xml
+LLMs-Text: https://pasilux.com.br/llms.txt
+LLMs-Full: https://pasilux.com.br/llms-full.txt
+Agent-Text: https://pasilux.com.br/agent.txt

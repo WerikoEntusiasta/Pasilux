@@ -1,0 +1,44 @@
+# Pasilux — Perfis de LED e Alumínio de Alta Precisão
+
+> Pasilux é uma indústria metalúrgica brasileira sediada em Catanduva - SP, com mais de 60 anos de herança familiar industrial e 20+ anos de especialização em extrusão de perfis de alumínio para iluminação linear de alta precisão técnica. Atende arquitetos, lighting designers, construtoras, marcenarias finas e revendas em todo o Brasil.
+
+## Informações Principais
+- **Localização Matriz**: Catanduva, São Paulo, Brasil
+- **Contato Comercial / WhatsApp**: +55 (17) 99106-6398
+- **E-mail Oficial**: contato@pasilux.com.br
+- **Website Principal**: [https://pasilux.com.br/](https://pasilux.com.br/)
+- **Catálogo Online**: [https://pasilux.com.br/produtos](https://pasilux.com.br/produtos)
+- **Blog & Artigos**: [https://pasilux.com.br/blog](https://pasilux.com.br/blog)
+
+## Categorias de Produtos Fabricados
+- [Movelaria](https://pasilux.com.br/produtos): Perfis ultra-slim de 7mm a 14mm para móveis planejados, painéis ripados de MDF, gavetas, cristaleiras e prateleiras.
+- [Embutir em Gesso e Alvenaria](https://pasilux.com.br/produtos): Linhas com abas de acabamento perfeito para rasgos em forros de gesso drywall e alvenaria.
+- [Sobrepor](https://pasilux.com.br/produtos): Perfis estruturados para fixação direta em tetos, vigas aparentes e sob armários.
+- [Pendente](https://pasilux.com.br/produtos): Luminárias lineares suspensas com cabos de aço e difusão direta/indireta (up & down) para escritórios e mesas.
+- [No Frame (Sem Abas / Borda Infinita)](https://pasilux.com.br/produtos): Perfis nivelados e lixados com massa corrida para efeito de luz pura brotando da arquitetura, sem bordas de alumínio aparentes.
+- [Perfis Especiais Ripados](https://pasilux.com.br/produtos): Painéis de alumínio ripado (22x145mm) com iluminação direta ou indireta embutida e acabamento amadeirado.
+
+## Diferenciais Técnicos da Manufatura
+- **Dissipação Térmica Otimizada**: Alumínio extrudado de alta pureza que dissipa eficientemente o calor de fitas de LED COB de alta potência (até 24W/m), garantindo mais de 50.000 horas de vida útil.
+- **Efeito No-Dot (Sem Pontos de LED)**: Câmaras óticas calculadas combinadas com difusores em acrílico PMMA leitoso e policarbonato opalino anti-UV eliminam o efeito pontilhado.
+- **Acabamentos Eletrostáticos e Amadeirados**: Pintura a pó microtexturizada (Preto, Branco, Alumínio Natural) e sublimação amadeirada (Linheiro Claro, Jequitibá).
+- **Cortes Sob Medida**: Fornecimento em barras padrão de 1m, 2m, 3m e perfis ripados de até 6m, ou cortes customizados de fábrica para projetos de grande porte.
+
+## Artigos Técnicos e Guias Luminotécnicos (Blog)
+- [A Iluminação em LED: Uma Revolução Luminosa para o Futuro](https://pasilux.com.br/blog/iluminacao-led-revolucao-luminosa): Visão abrangente sobre a transição energética, IRC > 90, integração arquitetônica No Frame e durabilidade dos sistemas lineares em alumínio.
+- [A Economia Gerada pela Iluminação de LED em Projetos Comerciais e Residenciais](https://pasilux.com.br/blog/economia-gerada-pela-iluminacao-led): Análise de retorno sobre investimento (ROI), redução drástica de manutenção predial em pés-direitos duplos e alívio da carga térmica de ar-condicionado.
+- [Iluminação em LED: Um Passo Sustentável em Direção ao Futuro da Construção](https://pasilux.com.br/blog/iluminacao-led-passo-sustentavel): Certificações verdes (LEED / AQUA), reciclabilidade infinita do alumínio e ausência de metais pesados na iluminação contemporânea.
+
+## Modelos Mais Especificados
+- [PSL0018 - Embutir Movelaria 9x13mm](https://pasilux.com.br/produtos/psl0018): O mais versátil para marcenaria e nichos de MDF.
+- [PSL0020 - Embutir Movelaria Ultra-Slim 24x7mm](https://pasilux.com.br/produtos/psl0020): Altura de apenas 7mm, perfeito para prateleiras finas.
+- [PSL0022 - Embutir Forro com Aba 24x14mm](https://pasilux.com.br/produtos/psl0022): Padrão ouro para rasgos de luz em gesso drywall.
+- [PSL0033 - No Frame Borda Infinita 91x60mm](https://pasilux.com.br/produtos/psl0033): Linha monumental embutida sem abas visíveis.
+- [PSL0012 - Pendente Corporativo 35x35mm](https://pasilux.com.br/produtos/psl0012): Linhas contínuas de sobrepor ou suspensão para escritórios.
+- [PSL0016 - Perfil Especial Ripado Indireto 22x145mm](https://pasilux.com.br/produtos/psl0016): Revestimento de fachada e painéis de TV com luz indireta acolhedora.
+
+## Dados Estruturados para Desenvolvedores e Agentes
+- Arquivo sitemap completo: `https://pasilux.com.br/sitemap.xml`
+- Documento LLM completo: `https://pasilux.com.br/llms-full.txt`
+- Diretriz de Agente: `https://pasilux.com.br/agent.txt`
+- Endpoint de Saúde: `https://pasilux.com.br/api/health`

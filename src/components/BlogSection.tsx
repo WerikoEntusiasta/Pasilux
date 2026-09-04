@@ -52,44 +52,55 @@ export default function BlogSection({ onNavigateToBlogPage }: BlogSectionProps) 
 
         {/* Articles List Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {ARTICLES.map((article) => (
-            <div
-              key={article.id}
-              onClick={() => handleOpenArticle(article)}
-              className="group bg-white border border-stone-200/90 rounded-2xl p-6 transition-all duration-300 hover:border-gold hover:shadow-xl cursor-pointer flex flex-col justify-between h-[360px] relative overflow-hidden"
-              id={`blog-card-${article.id}`}
-            >
-              <div className="space-y-4">
-                {/* Meta details */}
-                <div className="flex items-center gap-3 text-[10px] font-mono text-neutral-500 uppercase">
-                  <span className="text-gold-dark font-bold">{article.category}</span>
-                  <span>•</span>
-                  <span>{article.date}</span>
+          {ARTICLES.map((article) => {
+            const slug = article.slug || article.id;
+            return (
+              <a
+                key={article.id}
+                href={`/blog/${slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavigateToBlogPage) {
+                    onNavigateToBlogPage(slug);
+                  } else {
+                    handleOpenArticle(article);
+                  }
+                }}
+                className="group bg-white border border-stone-200/90 rounded-2xl p-6 transition-all duration-300 hover:border-gold hover:shadow-xl cursor-pointer flex flex-col justify-between h-[360px] relative overflow-hidden block no-underline text-inherit"
+                id={`blog-card-${article.id}`}
+              >
+                <div className="space-y-4">
+                  {/* Meta details */}
+                  <div className="flex items-center gap-3 text-[10px] font-mono text-neutral-500 uppercase">
+                    <span className="text-gold-dark font-bold">{article.category}</span>
+                    <span>•</span>
+                    <span>{article.date}</span>
+                  </div>
+
+                  <h3 className="font-serif font-semibold text-neutral-950 group-hover:text-gold-dark transition-colors line-clamp-2 leading-snug">
+                    {article.title}
+                  </h3>
+
+                  <p className="font-sans text-xs text-neutral-600 leading-relaxed font-light line-clamp-4">
+                    {article.excerpt}
+                  </p>
                 </div>
 
-                <h3 className="font-serif font-semibold text-neutral-950 group-hover:text-gold-dark transition-colors line-clamp-2 leading-snug">
-                  {article.title}
-                </h3>
-
-                <p className="font-sans text-xs text-neutral-600 leading-relaxed font-light line-clamp-4">
-                  {article.excerpt}
-                </p>
-              </div>
-
-              {/* Bottom Action Footer */}
-              <div className="pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-neutral-500 group-hover:text-gold-dark transition-all">
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="h-3.5 w-3.5 text-neutral-400" />
-                  {article.readTime} de leitura
-                </span>
-                
-                <span className="inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Ler Artigo
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </div>
-            </div>
-          ))}
+                {/* Bottom Action Footer */}
+                <div className="pt-4 border-t border-neutral-100 flex items-center justify-between text-xs font-semibold text-neutral-500 group-hover:text-gold-dark transition-all">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5 text-neutral-400" />
+                    {article.readTime} de leitura
+                  </span>
+                  
+                  <span className="inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Ler Artigo
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </a>
+            );
+          })}
         </div>
 
         {/* View all articles CTA */}

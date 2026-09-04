@@ -4,7 +4,7 @@ import fs from 'fs';
 import multer from 'multer';
 import initSqlJs, { Database } from 'sql.js';
 import dotenv from 'dotenv';
-import { PROFILES as DEFAULT_PROFILES } from './src/data';
+import { PROFILES as DEFAULT_PROFILES, ARTICLES as DEFAULT_ARTICLES } from './src/data';
 import { sendLeadEmail, sendBudgetEmail, sendTestEmail, getEmailConfigStatus } from './server/email';
 
 dotenv.config();
@@ -392,6 +392,104 @@ async function startServer() {
   // Health check endpoint for Easypanel / Docker / Uptime monitors
   app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() });
+  });
+
+  // ==========================================
+  // SEO, LLMS & AI AGENT DISCOVERY ENDPOINTS
+  // ==========================================
+  
+  // robots.txt
+  app.get('/robots.txt', (req, res) => {
+    const robotsPath = path.join(process.cwd(), 'public', 'robots.txt');
+    if (fs.existsSync(robotsPath)) {
+      res.type('text/plain; charset=utf-8').sendFile(robotsPath);
+    } else {
+      res.type('text/plain; charset=utf-8').send(
+        `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: https://${req.get('host') || 'pasilux.com.br'}/sitemap.xml\n`
+      );
+    }
+  });
+
+  // Dynamic sitemap.xml with all pages, product codes, and individual blog articles
+  app.get('/sitemap.xml', (req, res) => {
+    try {
+      const host = req.get('host') || 'pasilux.com.br';
+      const protocol = req.protocol === 'https' || req.get('x-forwarded-proto') === 'https' ? 'https' : 'http';
+      const baseUrl = `${protocol}://${host}`;
+      const today = new Date().toISOString().split('T')[0];
+
+      let profileList: any[] = [];
+      try {
+        profileList = queryAll('SELECT code FROM profiles');
+      } catch (e) {
+        profileList = DEFAULT_PROFILES;
+      }
+      if (!profileList || profileList.length === 0) {
+        profileList = DEFAULT_PROFILES;
+      }
+
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+      xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
+
+      // Static core routes
+      xml += `  <url>\n    <loc>${baseUrl}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+      xml += `  <url>\n    <loc>${baseUrl}/produtos</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>\n`;
+      xml += `  <url>\n    <loc>${baseUrl}/blog</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>\n`;
+
+      // Individual blog articles
+      for (const article of DEFAULT_ARTICLES) {
+        const slug = article.slug || article.id;
+        xml += `  <url>\n`;
+        xml += `    <loc>${baseUrl}/blog/${slug}</loc>\n`;
+        xml += `    <lastmod>${today}</lastmod>\n`;
+        xml += `    <changefreq>monthly</changefreq>\n`;
+        xml += `    <priority>0.85</priority>\n`;
+        if (article.image) {
+          xml += `    <image:image>\n      <image:loc>${article.image}</image:loc>\n      <image:title>${article.title.replace(/&/g, '&amp;')}</image:title>\n    </image:image>\n`;
+        }
+        xml += `  </url>\n`;
+      }
+
+      // Individual product detail pages
+      for (const p of profileList) {
+        const code = (p.code || '').toLowerCase();
+        if (code) {
+          xml += `  <url>\n    <loc>${baseUrl}/produtos/${code}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+        }
+      }
+
+      xml += `</urlset>`;
+      res.type('application/xml; charset=utf-8').send(xml);
+    } catch (err: any) {
+      const staticPath = path.join(process.cwd(), 'public', 'sitemap.xml');
+      if (fs.existsSync(staticPath)) {
+        res.type('application/xml; charset=utf-8').sendFile(staticPath);
+      } else {
+        res.status(500).send('Error generating sitemap');
+      }
+    }
+  });
+
+  // llms.txt & llms-full.txt (LLM & AI Assistant documentation)
+  app.get('/llms.txt', (req, res) => {
+    const filePath = path.join(process.cwd(), 'public', 'llms.txt');
+    res.type('text/plain; charset=utf-8').sendFile(filePath);
+  });
+
+  app.get('/llms-full.txt', (req, res) => {
+    const filePath = path.join(process.cwd(), 'public', 'llms-full.txt');
+    res.type('text/plain; charset=utf-8').sendFile(filePath);
+  });
+
+  // agent.txt & ai.txt (AI Autonomous Crawler discovery)
+  app.get('/agent.txt', (req, res) => {
+    const filePath = path.join(process.cwd(), 'public', 'agent.txt');
+    res.type('text/plain; charset=utf-8').sendFile(filePath);
+  });
+
+  app.get('/ai.txt', (req, res) => {
+    const filePath = path.join(process.cwd(), 'public', 'agent.txt');
+    res.type('text/plain; charset=utf-8').sendFile(filePath);
   });
 
   // File Upload Endpoint
